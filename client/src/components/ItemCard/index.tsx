@@ -1,9 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Full from '../resources/star_full.svg';
-import Half from '../resources/star-half.svg';
-import Empty from '../resources/star-empty.svg';
+import Full from '../../resources/star_full.svg';
+import Half from '../../resources/star-half.svg';
+import Empty from '../../resources/star-empty.svg';
 
 import './ItemCard.css'
 
@@ -13,6 +14,8 @@ type Props = {
 }
 
 const ItemCard: React.FC<Props> = (P) => {
+
+  const history = useHistory();
 
   // Determine which stars need to be Full, Half, or Empty
   const getStars = () => {
@@ -74,7 +77,14 @@ const ItemCard: React.FC<Props> = (P) => {
       <div className='item-details'>
 
         {/* Name */}
-        <div className='item-name'>{P.item.name}</div>
+        <div 
+        className='item-name' 
+        onClick={() => {
+          history.push(`/item/${P.item._id}`)
+        }}
+        >
+          {P.item.name}
+        </div>
 
         {/* Rating */}
         <div className='item-rating'>
@@ -91,7 +101,11 @@ const ItemCard: React.FC<Props> = (P) => {
 
       {/* View Item */}
       <div className='view-select'>
-        <button>
+        <button 
+        onClick={() => {
+          history.push(`/item/${P.item._id}`)
+        }}
+        >
           View Item
         </button>
       </div>
