@@ -18,7 +18,7 @@ const ItemCard: React.FC<Props> = (P) => {
   const getStars = () => {
     let stars: string[] = [];
 
-    if(P.item.avgRating % 1 === 0){
+    if(P.item.avgRating % 1 === 0) {
       for(let i=0; i<5; i++){
         i < P.item.avgRating ? stars.push(Full) : stars.push(Empty);
       }
@@ -34,14 +34,34 @@ const ItemCard: React.FC<Props> = (P) => {
     return stars;
   }
 
-  // Add trailing 0's if needed
+  // Add commas and trailing 0's if needed
   const formatPrice = () => {
     const splitArr = String(P.item.price).split('.');
-    if(splitArr[1] && splitArr[1].length !== 2){
-      return P.item.price + '0';
+
+    // check if whole number needs commas
+    if(splitArr[0].length > 3){
+
+      // reverse the string, then split it into chuncks of 3
+      // '12345' -> '54321' -> ['543', '21'] 
+      let reverseArr = ( splitArr[0].split('').reverse().join('') )
+      .match(/.{1,3}/g);
+      
+      // restore every substring, reverse the entire array, add commas
+      // ['543', '21']  -> ['345', '12'] -> ['12', '345'] -> '12,345'
+      splitArr[0] = reverseArr!.map( (e: string) => {
+        return e.split('').reverse().join('');
+      }).reverse().join(',');
     }
 
-    return P.item.price;
+    // check if decimals needs trailing 0's
+    if(splitArr[1] && splitArr[1].length === 1) {
+      splitArr[1] += '0';
+    }
+    if(splitArr[1] === undefined) {
+      splitArr.push('00');
+    }
+
+    return splitArr.join('.')
   }
 
   return(
@@ -67,10 +87,15 @@ const ItemCard: React.FC<Props> = (P) => {
         <div className='item-price'>
           ${formatPrice()} {P.item.isOnSale ? <span className='on-sale'>On Sale</span> : null}
         </div>
-
-        {/* View Item */}
-        
       </div>
+
+      {/* View Item */}
+      <div className='view-select'>
+        <button>
+          View Item
+        </button>
+      </div>
+
     </div>
   )
 }
