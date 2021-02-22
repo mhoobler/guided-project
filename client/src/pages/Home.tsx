@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect
+} from 'react';
 import axios from 'axios';
 
 import ItemContainer from '../components/ItemContainer';
@@ -11,6 +14,7 @@ const Home: React.FC = () => {
   const [searchString, setSearchString] = useState<string>(''); 
   const getQuery = axios.get('https://gp-super-store-api.herokuapp.com/item/list?size=29&q=' + searchString);
 
+  // Should wrap this is useCallback?
   const getItems = () => {
     getQuery
     .then( res => {
@@ -22,7 +26,7 @@ const Home: React.FC = () => {
 
   useEffect( () => {
     getItems()
-  }, [])  
+  }, [getItems])  
 
   return(
     <div className='page-wrapper' id='Home'>

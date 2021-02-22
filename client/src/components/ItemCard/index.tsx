@@ -89,7 +89,7 @@ const ItemCard: React.FC<Props> = (P) => {
         {/* Rating */}
         <div className='item-rating'>
           {getStars().map( (e: string, i: number) => {
-            return <div className='svg-container'><img key={i} src={e} /></div>
+            return <div key={i} className='svg-container'><img key={i} src={e} alt='' /></div>
           })}
         </div>
 
