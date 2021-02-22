@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 type Props = {
   to: string
@@ -7,11 +7,19 @@ type Props = {
 
 const NavItem: React.FC<Props> = (P) => {
 
+  let isActive = (match: any, location: any) => {
+    if(match && match.isExact){
+      return true;
+    } 
+
+    return false;
+  }
+
   return (
     <li className='nav-item'>
-      <Link to={P.to}>
+      <NavLink to={P.to} activeClassName='active' isActive={isActive}>
         {P.children}
-      </Link>  
+      </NavLink>  
     </li>
   )
 }
