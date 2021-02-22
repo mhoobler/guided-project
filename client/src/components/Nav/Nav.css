@@ -1,0 +1,40 @@
+nav, .nav-list {
+  display: flex;
+  flex-direction: row;
+}
+
+nav {
+  background-color: #013d55;
+}
+
+nav h2,a {
+  color: white;
+}
+
+.nav-logo {
+  font-size: 2rem;
+}
+
+.nav-logo > h2 {
+  margin: 24px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: auto 0;
+  margin-left: auto;
+  padding-right: 5%;
+}
+
+.nav-item {
+  margin: 0rem 1rem;
+  line-height: 30px;
+
+}
+
+.nav-item > a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
