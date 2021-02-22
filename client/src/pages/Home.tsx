@@ -3,8 +3,6 @@ import axios from 'axios';
 
 import ItemContainer from '../components/ItemContainer';
 
-import './styles/Home.css';
-
 const Home: React.FC = () => {
 
   const [itemsList, setItemsList] = useState<ItemEntry[]>([]);
