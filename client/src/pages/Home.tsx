@@ -17,11 +17,14 @@ const Home: React.FC = () => {
     .catch( err => console.log(err))
   }, [])  
 
-  return(
-    <div>
-      <h2>Home</h2>
 
-      <ItemContainer itemsList={itemsList} />
+
+  return(
+    <div className='page-wrapper' id='Home'>
+
+      <div className='content'>
+        <ItemContainer itemsList={itemsList} />
+      </div>
     </div>
   )
 }
