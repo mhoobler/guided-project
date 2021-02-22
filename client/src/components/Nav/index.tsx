@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import NavItem from './NavItem';
 
@@ -6,9 +7,11 @@ import './Nav.css';
 
 const Nav: React.FC = () => {
 
+  const history = useHistory();
+
   return (
     <nav>
-      <div className='nav-logo'>
+      <div className='nav-logo' onClick={() => history.push('/')}>
         <h2>Super Store</h2>
       </div>
 
