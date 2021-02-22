@@ -26,6 +26,7 @@ const Home: React.FC = () => {
 
   return(
     <div className='page-wrapper' id='Home'>
+      {/* Search bar has VISUAL BUG */}
       <div className='search-container'>
         <input 
         type='text' 
