@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import Full from "../../resources/star_full.svg";
@@ -13,7 +13,6 @@ type Props = {
 };
 
 const ItemCard: React.FC<Props> = (P) => {
-  const history = useHistory();
 
   // Determine which stars need to be Full, Half, or Empty
   const getStars = () => {
@@ -81,13 +80,8 @@ const ItemCard: React.FC<Props> = (P) => {
       {/* Details */}
       <div className="item-details">
         {/* Name */}
-        <div
-          className="item-name"
-          onClick={() => {
-            history.push(`/item/${P.item._id}`);
-          }}
-        >
-          {P.item.name}
+        <div className="item-name">
+          <Link to={`/item/${P.item._id}`}>{P.item.name}</Link>
         </div>
 
         {/* Rating */}
@@ -110,13 +104,9 @@ const ItemCard: React.FC<Props> = (P) => {
 
       {/* View Item */}
       <div className="view-select">
-        <button
-          onClick={() => {
-            history.push(`/item/${P.item._id}`);
-          }}
-        >
-          View Item
-        </button>
+        <div>
+          <Link to={`/item/${P.item._id}`}>View Item</Link>
+        </div>
       </div>
     </div>
   );
