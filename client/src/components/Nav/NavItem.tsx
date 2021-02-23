@@ -1,27 +1,26 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 type Props = {
-  to: string
-}
+  to: string;
+};
 
 const NavItem: React.FC<Props> = (P) => {
-
   let isActive = (match: any, location: any) => {
-    if(match && match.isExact){
+    if (match && match.isExact) {
       return true;
-    } 
+    }
 
     return false;
-  }
+  };
 
   return (
-    <li className='nav-item'>
-      <NavLink to={P.to} activeClassName='active' isActive={isActive}>
+    <li className="nav-item">
+      <NavLink to={P.to} activeClassName="active" isActive={isActive}>
         {P.children}
-      </NavLink>  
+      </NavLink>
     </li>
-  )
-}
+  );
+};
 
 export default NavItem;
