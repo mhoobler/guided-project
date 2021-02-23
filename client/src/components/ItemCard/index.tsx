@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import Full from "../../resources/star_full.svg";
-import Half from "../../resources/star-half.svg";
-import Empty from "../../resources/star-empty.svg";
+import Ratings from "../Ratings";
 
 import "./ItemCard.css";
 
@@ -24,28 +22,6 @@ type Props = {
 };
 
 const ItemCard: React.FC<Props> = (P) => {
-  // Determine which stars need to be Full, Half, or Empty
-  const getStars = () => {
-    let stars: string[] = [];
-
-    if (P.item.avgRating % 1 === 0) {
-      for (let i = 0; i < 5; i++) {
-        i < P.item.avgRating ? stars.push(Full) : stars.push(Empty);
-      }
-    } else {
-      let floor = Math.floor(P.item.avgRating);
-      for (let i = 0; i < 5; i++) {
-        i < floor
-          ? stars.push(Full)
-          : i === floor
-          ? stars.push(Half)
-          : stars.push(Empty);
-      }
-    }
-
-    return stars;
-  };
-
   // Add commas and trailing 0's if needed
   const formatPrice = () => {
     const splitArr = String(P.item.price).split(".");
@@ -95,15 +71,7 @@ const ItemCard: React.FC<Props> = (P) => {
         </div>
 
         {/* Rating */}
-        <div className="item-rating">
-          {getStars().map((e: string, i: number) => {
-            return (
-              <div key={i} className="svg-container">
-                <img key={i} src={e} alt="" />
-              </div>
-            );
-          })}
-        </div>
+        <Ratings rating={P.item.avgRating} />
 
         {/* Price */}
         <div className="item-price">
