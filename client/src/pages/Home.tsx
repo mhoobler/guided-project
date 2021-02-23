@@ -4,6 +4,8 @@ import axios from "axios";
 import Searchbar from "../components/Searchbar";
 import ItemContainer from "../components/ItemContainer";
 
+import API from "../utils/API";
+
 import "./styles/Home.css";
 
 type ItemEntry = {
@@ -19,15 +21,10 @@ type ItemEntry = {
 
 const Home: React.FC = () => {
   const [itemsList, setItemsList] = useState<ItemEntry[]>([]);
-  const [searchString, setSearchString] = useState<string>("");
-  const getQuery = axios.get(
-    "https://gp-super-store-api.herokuapp.com/item/list?size=29&q=" +
-      searchString
-  );
 
-  // Should wrap this is useCallback?
-  const getItems = () => {
-    getQuery
+  // Should wrap this in useCallback?
+  const getItems = (str: string | undefined = "") => {
+    API.getItems(str)
       .then((res) => {
         const { items } = res.data;
         setItemsList(items);
@@ -37,21 +34,15 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     getItems();
-  }, [getItems]);
+  }, []);
 
   return (
     <div className="page-wrapper" id="Home">
-      {/* Search bar has VISUAL BUG */}
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search"
-          onChange={(evt) => {
-            setSearchString(evt.currentTarget.value);
-          }}
-        />
-        <button onClick={getItems}>O</button>
-      </div>
+      <Searchbar
+        handleSearch={(str: string) => {
+          getItems(str);
+        }}
+      />
 
       <div className="content">
         <ItemContainer itemsList={itemsList} />
