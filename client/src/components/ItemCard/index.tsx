@@ -8,12 +8,22 @@ import Empty from "../../resources/star-empty.svg";
 
 import "./ItemCard.css";
 
+type ItemEntry = {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  avgRating: number;
+  isOnSale: boolean;
+  stockCount: number;
+  imageUrl: string;
+};
+
 type Props = {
   item: ItemEntry;
 };
 
 const ItemCard: React.FC<Props> = (P) => {
-
   // Determine which stars need to be Full, Half, or Empty
   const getStars = () => {
     let stars: string[] = [];
