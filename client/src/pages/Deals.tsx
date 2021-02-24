@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import ItemContainer from "../components/ItemContainer";
-import API from "../utils/API";
+import useGetItems from "../utils/useGetItems";
 
 const Deals: React.FC = () => {
-  const [itemsList, setItemsList] = useState<ItemEntry[]>([]);
-
-  // Should wrap this in useCallback?
-  const getSales = () => {
-    API.getDeals()
-      .then((res) => {
-        const { items } = res.data;
-        setItemsList(items);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    getSales();
-  }, [getSales]);
+  const query: ListQuery = { isOnSale: true };
+  const itemsList = useGetItems(JSON.stringify(query));
 
   return (
     <div className="page-wrapper" id="Deals">
