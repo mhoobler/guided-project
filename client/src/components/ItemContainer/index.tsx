@@ -4,17 +4,6 @@ import ItemCard from "../ItemCard";
 
 import "./style.css";
 
-type ItemEntry = {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  avgRating: number;
-  isOnSale: boolean;
-  stockCount: number;
-  imageUrl: string;
-};
-
 type Props = {
   itemsList: ItemEntry[];
 };

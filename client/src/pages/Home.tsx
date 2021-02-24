@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import Searchbar from "../components/Searchbar";
 import ItemContainer from "../components/ItemContainer";
@@ -7,17 +6,6 @@ import ItemContainer from "../components/ItemContainer";
 import API from "../utils/API";
 
 import "./styles/Home.css";
-
-type ItemEntry = {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  avgRating: number;
-  isOnSale: boolean;
-  stockCount: number;
-  imageUrl: string;
-};
 
 const Home: React.FC = () => {
   const [itemsList, setItemsList] = useState<ItemEntry[]>([]);

@@ -4,17 +4,6 @@ import { render, screen } from "@testing-library/react";
 import App from "./App";
 import ItemCard from "./components/ItemCard";
 
-type ItemEntry = {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  avgRating: number;
-  isOnSale: boolean;
-  stockCount: number;
-  imageUrl: string;
-};
-
 const mockItem: ItemEntry = {
   _id: "f1f1f1",
   name: "Product Name",
