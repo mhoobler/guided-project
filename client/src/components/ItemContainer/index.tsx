@@ -4,15 +4,15 @@ import ItemCard from "../ItemCard";
 
 import "./style.css";
 
-type Props = {
+type ItemContainerProps = {
   itemsList: ItemEntry[];
 };
 
-const ItemContainer: React.FC<Props> = ({ itemsList }) => {
+const ItemContainer: React.FC<ItemContainerProps> = ({ itemsList }) => {
   return (
     <div className="items-container">
-      {itemsList.map((e: ItemEntry, i: number) => {
-        return <ItemCard key={i} item={e} />;
+      {itemsList.map((e: ItemEntry) => {
+        return <ItemCard key={e._id} item={e} />;
       })}
     </div>
   );

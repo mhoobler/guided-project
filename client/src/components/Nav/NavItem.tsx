@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-type Props = {
+type NavItemProps = {
   to: string;
 };
 
-const NavItem: React.FC<Props> = ({ to, children }) => {
+const NavItem: React.FC<NavItemProps> = ({ to, children }) => {
   let isActive = (match: any, location: any) => {
     if (match && match.isExact) {
       return true;

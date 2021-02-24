@@ -4,11 +4,11 @@ import Full from "../../resources/star_full.svg";
 import Half from "../../resources/star-half.svg";
 import Empty from "../../resources/star-empty.svg";
 
-type Props = {
+type RatingsProps = {
   rating: number;
 };
 
-const Ratings: React.FC<Props> = ({ rating }) => {
+const Ratings: React.FC<RatingsProps> = ({ rating }) => {
   const getStars = () => {
     let stars: string[] = [];
 

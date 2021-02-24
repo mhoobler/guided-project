@@ -6,11 +6,11 @@ import Ratings from "../Ratings";
 
 import "./ItemCard.css";
 
-type Props = {
+type ItemEntryProps = {
   item: ItemEntry;
 };
 
-const ItemCard: React.FC<Props> = ({ item }) => {
+const ItemCard: React.FC<ItemEntryProps> = ({ item }) => {
   const formatPrice = item.price.toLocaleString(undefined, {
     currency: "USD",
     currencyDisplay: "narrowSymbol",

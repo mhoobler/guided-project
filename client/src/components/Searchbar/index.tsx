@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-type Props = {
+type SearchbarProps = {
   handleSearch: (str: string) => void;
 };
 
-const Searchbar: React.FC<Props> = ({ handleSearch }) => {
+const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
   const [input, setInput] = useState("");
 
   return (
