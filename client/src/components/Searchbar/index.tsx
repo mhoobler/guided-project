@@ -4,7 +4,7 @@ type Props = {
   handleSearch: (str: string) => void;
 };
 
-const Searchbar: React.FC<Props> = (P) => {
+const Searchbar: React.FC<Props> = ({ handleSearch }) => {
   const [input, setInput] = useState("");
 
   return (
@@ -17,7 +17,7 @@ const Searchbar: React.FC<Props> = (P) => {
           setInput(evt.currentTarget.value);
         }}
       />
-      <button onClick={() => P.handleSearch(input)}>O</button>
+      <button onClick={() => handleSearch(input)}>O</button>
     </div>
   );
 };

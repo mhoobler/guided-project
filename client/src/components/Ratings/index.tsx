@@ -8,16 +8,16 @@ type Props = {
   rating: number;
 };
 
-const Ratings: React.FC<Props> = (P) => {
+const Ratings: React.FC<Props> = ({ rating }) => {
   const getStars = () => {
     let stars: string[] = [];
 
-    if (P.rating % 1 === 0) {
+    if (rating % 1 === 0) {
       for (let i = 0; i < 5; i++) {
-        i < P.rating ? stars.push(Full) : stars.push(Empty);
+        i < rating ? stars.push(Full) : stars.push(Empty);
       }
     } else {
-      let floor = Math.floor(P.rating);
+      let floor = Math.floor(rating);
       for (let i = 0; i < 5; i++) {
         i < floor
           ? stars.push(Full)

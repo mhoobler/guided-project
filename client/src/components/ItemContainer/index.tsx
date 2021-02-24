@@ -8,10 +8,10 @@ type Props = {
   itemsList: ItemEntry[];
 };
 
-const ItemContainer: React.FC<Props> = (P) => {
+const ItemContainer: React.FC<Props> = ({ itemsList }) => {
   return (
     <div className="items-container">
-      {P.itemsList.map((e: ItemEntry, i: number) => {
+      {itemsList.map((e: ItemEntry, i: number) => {
         return <ItemCard key={i} item={e} />;
       })}
     </div>

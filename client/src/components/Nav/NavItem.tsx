@@ -5,7 +5,7 @@ type Props = {
   to: string;
 };
 
-const NavItem: React.FC<Props> = (P) => {
+const NavItem: React.FC<Props> = ({ to, children }) => {
   let isActive = (match: any, location: any) => {
     if (match && match.isExact) {
       return true;
@@ -16,8 +16,8 @@ const NavItem: React.FC<Props> = (P) => {
 
   return (
     <li className="nav-item">
-      <NavLink to={P.to} activeClassName="active" isActive={isActive}>
-        {P.children}
+      <NavLink to={to} activeClassName="active" isActive={isActive}>
+        {children}
       </NavLink>
     </li>
   );
