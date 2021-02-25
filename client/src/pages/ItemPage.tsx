@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import Ratings from "../components/Ratings";
 import Price from "../components/Price";
+import ErrorHandler from "../components/ErrorHandler";
 
 import API from "../utils/API";
 
@@ -47,12 +48,7 @@ const ItemPage: React.FC = () => {
 
               <div className="item-add">Add to Cart</div>
 
-              <div className="alerts-container">
-                <div className="alert insufficient">Insufficient stock</div>
-                <div className="alert in-cart">
-                  item is currently in your cart
-                </div>
-              </div>
+              <ErrorHandler inCart={1} insufficient={true} />
             </div>
           </div>
         </div>

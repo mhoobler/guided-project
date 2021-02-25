@@ -1,0 +1,23 @@
+.error {
+  border-radius: 5px;
+  width: 100%;
+  height: 48px;
+  font-size: 20px;
+  font-size: auto;
+  padding-left: 1rem;
+  line-height: 48px;
+  box-sizing: border-box;
+  margin-top: 1rem;
+}
+
+.error.insufficient {
+  border-color: #e8c7ca;
+  background-color: #f8d7da;
+  color: #942f35;
+}
+
+.error.in-cart {
+  border-color: #b8c9cf;
+  background-color: #ccd8dd;
+  color: #013d55;
+}
