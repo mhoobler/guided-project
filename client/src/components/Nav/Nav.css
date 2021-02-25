@@ -8,21 +8,20 @@ nav {
   background-color: #013d55;
 }
 
-nav h2,a {
+nav a {
+  text-decoration: none;
   color: white;
 }
 
 /* Logo */
 .nav-logo {
-  font-size: 2rem;
+  margin: 20px;
+  margin-left: 36px;
 }
 
-.nav-logo:hover {
-  cursor: pointer;
-}
-
-.nav-logo > h2 {
-  margin: 24px;
+.nav-logo > a {
+  font-size: 48px;
+  font-weight: bolder;
 }
 
 /* List and items */
@@ -41,7 +40,6 @@ nav h2,a {
 }
 
 .nav-item > a {
-  text-decoration: none;
   font-weight: 500;
   font-size: 1.5rem;
 }
