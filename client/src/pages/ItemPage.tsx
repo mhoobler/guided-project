@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Ratings from "../components/Ratings";
 import Price from "../components/Price";
 import ErrorHandler from "../components/ErrorHandler";
+import QuantitySelect from "../components/QuantitySelect";
 
 import API from "../utils/API";
 
@@ -14,6 +15,7 @@ type Params = {
 };
 
 const ItemPage: React.FC = () => {
+  const [quantity, setQuantity] = useState<number>(0);
   const [item, setItem] = useState<ItemEntry | null>(null);
   let params: Params = useParams();
 
@@ -44,7 +46,10 @@ const ItemPage: React.FC = () => {
 
               <Price price={item.price} />
 
-              <div className="item-quanity">{item.stockCount}</div>
+              <QuantitySelect
+                handleChange={(n: number) => setQuantity(n)}
+                value={quantity}
+              />
 
               <div className="item-add">Add to Cart</div>
 

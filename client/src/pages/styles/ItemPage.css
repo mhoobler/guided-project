@@ -24,6 +24,7 @@
 .description-container > * {
   width: 60%;
   margin-left: 10%;
+  margin-bottom: 10px;
 }
 
 .alert {

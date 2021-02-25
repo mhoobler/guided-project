@@ -7,7 +7,7 @@ type PriceProps = {
   isOnSale?: boolean;
 };
 
-const Price: React.FC<Props> = ({ price, isOnSale }) => {
+const Price: React.FC<PriceProps> = ({ price, isOnSale }) => {
   const formatPrice = price.toLocaleString(undefined, {
     currency: "USD",
     currencyDisplay: "narrowSymbol",
