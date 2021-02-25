@@ -1,0 +1,14 @@
+.item-price {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.item-price > .on-sale {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #c82121;
+  border-radius: 2px;
+  padding: 2px 10px;
+  vertical-align: 30%;
+}

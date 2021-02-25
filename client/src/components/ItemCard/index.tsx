@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import Ratings from "../Ratings";
 import Button from "../Button";
+import Price from '../Price';
+
 
 import "./ItemCard.css";
 
@@ -35,10 +37,7 @@ const ItemCard: React.FC<ItemEntryProps> = ({ item }) => {
         <Ratings rating={item.avgRating} />
 
         {/* Price */}
-        <div className="item-price">
-          {formatPrice + " "}
-          {item.isOnSale ? <span className="on-sale">On Sale</span> : null}
-        </div>
+        <Price price={item.price} isOnSale={item.isOnSale} />
       </div>
 
       {/* View Item */}
