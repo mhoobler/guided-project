@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import Ratings from "../Ratings";
+import Button from "../Button";
 
 import "./ItemCard.css";
 
@@ -41,11 +42,9 @@ const ItemCard: React.FC<ItemEntryProps> = ({ item }) => {
       </div>
 
       {/* View Item */}
-      <div className="view-select">
-        <div>
-          <Link to={`/item/${item._id}`}>View Item</Link>
-        </div>
-      </div>
+      <Button>
+        <Link to={`/item/${item._id}`}>View Item</Link>
+      </Button>
     </div>
   );
 };

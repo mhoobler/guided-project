@@ -1,5 +1,6 @@
 /* General Styling */
-nav, .nav-list {
+nav,
+.nav-list {
   display: flex;
   flex-direction: row;
 }
@@ -36,7 +37,6 @@ nav a {
 .nav-item {
   margin: 0rem 1rem;
   line-height: 30px;
-
 }
 
 .nav-item > a {
