@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import './Price.css';
+import "./Price.css";
 
 type PriceProps = {
-  price: number
-  isOnSale?: boolean
-}
+  price: number;
+  isOnSale?: boolean;
+};
 
-const Price: React.FC<Props> = ({price, isOnSale}) => {
-
+const Price: React.FC<Props> = ({ price, isOnSale }) => {
   const formatPrice = price.toLocaleString(undefined, {
     currency: "USD",
     currencyDisplay: "narrowSymbol",
@@ -20,7 +19,7 @@ const Price: React.FC<Props> = ({price, isOnSale}) => {
       {formatPrice + " "}
       {isOnSale ? <span className="on-sale">On Sale</span> : null}
     </div>
-  )
-}
+  );
+};
 
 export default Price;

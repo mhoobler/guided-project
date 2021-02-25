@@ -1,6 +1,7 @@
 .item-price {
   font-size: 32px;
   font-weight: 700;
+  color: #223;
 }
 
 .item-price > .on-sale {

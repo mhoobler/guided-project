@@ -1,4 +1,4 @@
-.page-wrapper {
+.item-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -12,11 +12,13 @@
 }
 
 .item-container > img {
-  width: 50%;
+  width: 40%;
 }
 
 .item-container > .description-container {
   width: 50%;
+  padding-left: 10%;
+  margin-top: 5%;
 }
 
 .description-container > * {

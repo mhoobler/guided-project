@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 
 import Ratings from "../Ratings";
 import Button from "../Button";
-import Price from '../Price';
-
+import Price from "../Price";
 
 import "./ItemCard.css";
 
