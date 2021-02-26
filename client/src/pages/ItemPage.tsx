@@ -5,6 +5,7 @@ import Ratings from "../components/Ratings";
 import Price from "../components/Price";
 import ErrorHandler from "../components/ErrorHandler";
 import QuantitySelect from "../components/QuantitySelect";
+import Button from '../components/Button';
 
 import API from "../utils/API";
 
@@ -51,9 +52,9 @@ const ItemPage: React.FC = () => {
                 value={quantity}
               />
 
-              <div className="item-add">Add to Cart</div>
+              <Button><div className="item-add">Add to Cart</div></Button>
 
-              <ErrorHandler inCart={1} insufficient={true} />
+              <ErrorHandler inCart={1} insufficient={quantity > item.stockCount} />
             </div>
           </div>
         </div>
