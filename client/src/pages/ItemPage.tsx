@@ -16,7 +16,8 @@ type Params = {
 };
 
 const ItemPage: React.FC = () => {
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState(0);
+  const [insufficient, setInsufficient] = useState(false);
   const [item, setItem] = useState<ItemEntry | null>(null);
   let params: Params = useParams();
 
@@ -50,7 +51,14 @@ const ItemPage: React.FC = () => {
               <Price price={item.price} />
 
               <QuantitySelect
-                handleChange={(n: number) => setQuantity(n)}
+                handleChange={(n: number) => {
+                  if(n > item.stockCount){
+                    setInsufficient(true);
+                  } else {
+                    setInsufficient(false);
+                    setQuantity(n)
+                  }
+                }}
                 value={quantity}
               />
 
@@ -60,7 +68,7 @@ const ItemPage: React.FC = () => {
 
               <ErrorHandler
                 inCart={1}
-                insufficient={quantity > item.stockCount}
+                insufficient={insufficient}
               />
             </div>
           </div>

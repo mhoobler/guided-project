@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Searchbar from "../components/Searchbar";
 import ItemContainer from "../components/ItemContainer";
 
-import useGetItems from "../utils/useGetItems";
+import useGetList from "../utils/useGetList";
 
 import "./styles/Home.css";
 
 const Home: React.FC = () => {
   const [search, setSearch] = useState("");
   const query: ListQuery = { size: 29, q: search };
-  const itemsList = useGetItems(JSON.stringify(query));
+  const itemsList = useGetList(JSON.stringify(query));
 
   return (
     <div className="page-wrapper" id="Home">

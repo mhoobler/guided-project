@@ -17,7 +17,9 @@ const QuantitySelect: React.FC<QuantitySelectProps> = ({
         <label htmlFor="quantity"> Quantity: </label>
         <input
           value={value}
+          min={0}
           onChange={(evt) => {
+            console.log(evt);
             handleChange(parseInt(evt.currentTarget.value));
           }}
           name="quantity"

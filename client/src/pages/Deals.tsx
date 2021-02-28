@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import ItemContainer from "../components/ItemContainer";
-import useGetItems from "../utils/useGetItems";
+import useGetList from "../utils/useGetList";
 
 const Deals: React.FC = () => {
   const query: ListQuery = { isOnSale: true };
-  const itemsList = useGetItems(JSON.stringify(query));
+  const itemsList = useGetList(JSON.stringify(query));
 
   return (
     <div className="page-wrapper" id="Deals">
