@@ -31,6 +31,15 @@ const ItemPage: React.FC = () => {
   }, []);
 
   if (item !== null) {
+    const handleQuantityChange = (n: number) => {
+      if (n > item.stockCount) {
+        setInsufficient(true);
+      } else {
+        setInsufficient(false);
+        setQuantity(n);
+      }
+    };
+
     return (
       <div className="page-wrapper" id="ItemPage">
         <div className="item-wrapper">
@@ -51,14 +60,7 @@ const ItemPage: React.FC = () => {
               <Price price={item.price} />
 
               <QuantitySelect
-                handleChange={(n: number) => {
-                  if (n > item.stockCount) {
-                    setInsufficient(true);
-                  } else {
-                    setInsufficient(false);
-                    setQuantity(n);
-                  }
-                }}
+                handleChange={handleQuantityChange}
                 value={quantity}
               />
 
