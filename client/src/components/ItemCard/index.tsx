@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import Ratings from "../Ratings";
-import Button from "../Button";
+import ButtonContainer from "../ButtonContainer";
 import Price from "../Price";
 
 import "./ItemCard.css";
@@ -40,9 +40,9 @@ const ItemCard: React.FC<ItemEntryProps> = ({ item }) => {
       </div>
 
       {/* View Item */}
-      <Button>
+      <ButtonContainer>
         <Link to={`/item/${item._id}`}>View Item</Link>
-      </Button>
+      </ButtonContainer>
     </div>
   );
 };

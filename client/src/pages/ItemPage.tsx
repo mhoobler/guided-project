@@ -5,7 +5,7 @@ import Ratings from "../components/Ratings";
 import Price from "../components/Price";
 import ErrorHandler from "../components/ErrorHandler";
 import QuantitySelect from "../components/QuantitySelect";
-import Button from "../components/Button";
+import ButtonContainer from "../components/ButtonContainer";
 
 import API from "../utils/API";
 
@@ -52,24 +52,21 @@ const ItemPage: React.FC = () => {
 
               <QuantitySelect
                 handleChange={(n: number) => {
-                  if(n > item.stockCount){
+                  if (n > item.stockCount) {
                     setInsufficient(true);
                   } else {
                     setInsufficient(false);
-                    setQuantity(n)
+                    setQuantity(n);
                   }
                 }}
                 value={quantity}
               />
 
-              <Button align="left">
+              <ButtonContainer align="left">
                 <div className="item-add">Add to Cart</div>
-              </Button>
+              </ButtonContainer>
 
-              <ErrorHandler
-                inCart={1}
-                insufficient={insufficient}
-              />
+              <ErrorHandler inCart={1} insufficient={insufficient} />
             </div>
           </div>
         </div>
