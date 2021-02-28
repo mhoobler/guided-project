@@ -2,11 +2,13 @@ import React from "react";
 
 import "./Button.css";
 
-type Props = {};
+type ButtonProps = {
+  align: "left" | "right";
+};
 
-const Button: React.FC<Props> = ({ children }) => {
+const Button: React.FC<ButtonProps> = ({ align, children }) => {
   return (
-    <div className="button-container">
+    <div className={`button-container align-${align}`}>
       <div>{children}</div>
     </div>
   );

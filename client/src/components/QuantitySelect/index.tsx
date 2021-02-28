@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./QuantitySelect.css";
+
 type QuantitySelectProps = {
   value: number;
   handleChange: (n: number) => void;

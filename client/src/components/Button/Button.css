@@ -11,6 +11,16 @@
   border-radius: 4px;
 }
 
+.button-container.align-left > div {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.button-container.align-right > div {
+  margin-left: auto;
+  margin-right: 0;
+}
+
 .button-container > div > * {
   text-decoration: none;
   font-size: 18px;

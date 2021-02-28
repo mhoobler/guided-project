@@ -34,10 +34,12 @@ const ItemPage: React.FC = () => {
       <div className="page-wrapper" id="ItemPage">
         <div className="item-wrapper">
           <div className="item-container">
-            <img src={item.imageUrl} alt={item.name} />
+            <div className="image-container">
+              <img src={item.imageUrl} alt={item.name} />
+            </div>
 
             <div className="description-container">
-              <div className="item-title">{item.name}</div>
+              <div className="item-name">{item.name}</div>
 
               <div className="item-rating">
                 {<Ratings rating={item.avgRating} />}
@@ -52,7 +54,7 @@ const ItemPage: React.FC = () => {
                 value={quantity}
               />
 
-              <Button>
+              <Button align="left">
                 <div className="item-add">Add to Cart</div>
               </Button>
 
