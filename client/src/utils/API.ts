@@ -8,6 +8,6 @@ export default {
   },
 
   getItem: (_id: string) => {
-    return axios.get(`https://gp-super-store-api.herokuapp.com/item/${_id}`)
-  }
+    return axios.get(`https://gp-super-store-api.herokuapp.com/item/${_id}`);
+  },
 };

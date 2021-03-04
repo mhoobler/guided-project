@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import Ratings from "../Ratings";
+import ButtonContainer from "../ButtonContainer";
+import Price from "../Price";
 
 import "./ItemCard.css";
 
@@ -34,18 +36,13 @@ const ItemCard: React.FC<ItemEntryProps> = ({ item }) => {
         <Ratings rating={item.avgRating} />
 
         {/* Price */}
-        <div className="item-price">
-          {formatPrice + " "}
-          {item.isOnSale ? <span className="on-sale">On Sale</span> : null}
-        </div>
+        <Price price={item.price} isOnSale={item.isOnSale} />
       </div>
 
       {/* View Item */}
-      <div className="view-select">
-        <div>
-          <Link to={`/item/${item._id}`}>View Item</Link>
-        </div>
-      </div>
+      <ButtonContainer>
+        <Link to={`/item/${item._id}`}>View Item</Link>
+      </ButtonContainer>
     </div>
   );
 };

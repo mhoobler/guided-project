@@ -1,0 +1,30 @@
+.button-container {
+  text-align: center;
+  height: 10%;
+}
+
+.button-container > div {
+  width: 10rem;
+  margin: auto;
+  height: 2.5rem;
+  background-color: #f08700;
+  border-radius: 4px;
+}
+
+.button-container.align-left > div {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.button-container.align-right > div {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.button-container > div > * {
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  vertical-align: middle;
+  line-height: 40px;
+}
