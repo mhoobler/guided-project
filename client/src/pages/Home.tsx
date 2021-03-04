@@ -10,7 +10,7 @@ import "./styles/Home.css";
 const Home: React.FC = () => {
   const [search, setSearch] = useState("");
   const query: ListQuery = { size: 29, q: search };
-  const itemsList = useGetList(JSON.stringify(query));
+  const itemsList = useGetList(query);
 
   return (
     <div className="page-wrapper" id="Home">

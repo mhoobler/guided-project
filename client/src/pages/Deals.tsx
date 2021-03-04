@@ -5,7 +5,7 @@ import useGetList from "../utils/useGetList";
 
 const Deals: React.FC = () => {
   const query: ListQuery = { isOnSale: true };
-  const itemsList = useGetList(JSON.stringify(query));
+  const itemsList = useGetList(query);
 
   return (
     <div className="page-wrapper" id="Deals">
