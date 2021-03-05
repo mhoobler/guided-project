@@ -5,8 +5,6 @@ import ItemContainer from "../components/ItemContainer";
 
 import useGetList from "../utils/useGetList";
 
-import "./styles/Home.css";
-
 const Home: React.FC = () => {
   const [search, setSearch] = useState("");
   const query: ListQuery = { size: 29, q: search };
