@@ -15,3 +15,7 @@ code {
 .content {
   padding: 10%;
 }
+
+button:hover {
+  cursor: pointer;
+}
