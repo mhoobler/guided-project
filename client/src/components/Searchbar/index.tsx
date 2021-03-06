@@ -15,29 +15,32 @@ const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
   const clearSearch = useCallback(() => {
     setInput("");
     handleSearch("");
-  }, [handleSearch])
+  }, [handleSearch]);
 
-  const escapeClear = useCallback((evt: any) => {
-    const inp = document.getElementById('search-input');
-    const focus = document.activeElement;
-    if(inp === focus && evt.key === "Escape"){
-      clearSearch();
-    }
-  }, [clearSearch])
+  const escapeClear = useCallback(
+    (evt: any) => {
+      const inp = document.getElementById("search-input");
+      const focus = document.activeElement;
+      if (inp === focus && evt.key === "Escape") {
+        clearSearch();
+      }
+    },
+    [clearSearch]
+  );
 
   useEffect(() => {
     window.addEventListener("keyup", escapeClear);
 
     return () => {
       window.removeEventListener("keyup", escapeClear);
-    }
-  }, [escapeClear])
+    };
+  }, [escapeClear]);
 
   return (
     <div className="search-container">
       {/* Search bar has VISUAL BUG */}
       <input
-        id='search-input'
+        id="search-input"
         type="text"
         placeholder="Search"
         value={input}
@@ -46,10 +49,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
         }}
       />
       <div>
-        <button
-          className="clear-search"
-          onClick={clearSearch}
-        >
+        <button className="clear-search" onClick={clearSearch}>
           <img src={CloseSVG} alt="Clear search" />
         </button>
       </div>
