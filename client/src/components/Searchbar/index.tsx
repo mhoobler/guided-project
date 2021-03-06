@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import CloseSVG from "../../resources/close.svg";
 import SearchSVG from "../../resources/search.svg";
@@ -12,10 +12,32 @@ type SearchbarProps = {
 const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
   const [input, setInput] = useState("");
 
+  const clearSearch = useCallback(() => {
+    setInput("");
+    handleSearch("");
+  }, [handleSearch])
+
+  const escapeClear = useCallback((evt: any) => {
+    const inp = document.getElementById('search-input');
+    const focus = document.activeElement;
+    if(inp === focus && evt.key === "Escape"){
+      clearSearch();
+    }
+  }, [clearSearch])
+
+  useEffect(() => {
+    window.addEventListener("keyup", escapeClear);
+
+    return () => {
+      window.removeEventListener("keyup", escapeClear);
+    }
+  }, [escapeClear])
+
   return (
     <div className="search-container">
       {/* Search bar has VISUAL BUG */}
       <input
+        id='search-input'
         type="text"
         placeholder="Search"
         value={input}
@@ -26,10 +48,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
       <div>
         <button
           className="clear-search"
-          onClick={() => {
-            setInput("");
-            handleSearch("");
-          }}
+          onClick={clearSearch}
         >
           <img src={CloseSVG} alt="Clear search" />
         </button>

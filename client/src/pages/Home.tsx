@@ -7,7 +7,7 @@ import useGetList from "../utils/useGetList";
 
 const Home: React.FC = () => {
   const [search, setSearch] = useState("");
-  const query: ListQuery = { size: 29, q: search };
+  const query: ListQuery = { size: 18, q: search };
   const itemsList = useGetList(query);
 
   return (
@@ -18,8 +18,20 @@ const Home: React.FC = () => {
         }}
       />
 
+      {/* Oops message shows for a bit after clearing search, should find a way to do spinner while loading results */}
       <div className="content">
-        <ItemContainer itemsList={itemsList} />
+        {itemsList.length > 0 ?
+          <ItemContainer itemsList={itemsList} />
+        :
+        search !== "" ?
+          <h2 className='center-text'>
+            No results
+          </h2>
+        :
+          <h2 className='center-text'>
+            Oops, looks like something went wrong
+          </h2>
+        }
       </div>
     </div>
   );
