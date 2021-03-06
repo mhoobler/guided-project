@@ -1,0 +1,26 @@
+.page-controller-container {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.page-input-group {
+  height: 100%;
+  width: 7rem;
+  text-align: center;
+  line-height: 40px;
+}
+
+.page-input-group > * {
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-center {
+  justify-content: center;
+}
