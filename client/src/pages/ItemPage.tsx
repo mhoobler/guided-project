@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Ratings from "../components/Ratings";
@@ -7,7 +7,7 @@ import ErrorHandler from "../components/ErrorHandler";
 import QuantitySelect from "../components/QuantitySelect";
 import ButtonContainer from "../components/ButtonContainer";
 
-import API from "../utils/API";
+import useGetItem from "../utils/useGetItem";
 
 import "./styles/ItemPage.css";
 
@@ -16,21 +16,19 @@ type Params = {
 };
 
 const ItemPage: React.FC = () => {
+  const params: Params = useParams();
+  const item = useGetItem(params.id);
+
   const [quantity, setQuantity] = useState(0);
   const [insufficient, setInsufficient] = useState(false);
-  const [item, setItem] = useState<ItemEntry | null>(null);
-  let params: Params = useParams();
 
-  useEffect(() => {
-    API.getItem(params.id)
-      .then((res) => {
-        let i: ItemEntry = res.data;
-        setItem(i);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  if (item !== null) {
+  if (typeof item === "string") {
+    return (
+      <div>
+        <h2>{item}</h2>
+      </div>
+    );
+  } else {
     const handleQuantityChange = (n: number) => {
       if (n > item.stockCount) {
         setInsufficient(true);
@@ -75,8 +73,5 @@ const ItemPage: React.FC = () => {
       </div>
     );
   }
-
-  return <div> Unable to load item </div>;
 };
-
 export default ItemPage;

@@ -1,12 +1,8 @@
 import React, { FC, createContext, useState } from "react";
 
-type CartItem = {
-  [id: string]: CartEntry;
-};
-
 const CartContext = createContext<{
-  state: CartItem[];
-  dispatch: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  state: CartEntry[];
+  dispatch: React.Dispatch<React.SetStateAction<CartEntry[]>>;
 }>({
   state: [],
   dispatch: () => {},
@@ -15,7 +11,7 @@ const CartContext = createContext<{
 const { Provider } = CartContext;
 
 const CartProvider: FC = ({ children }) => {
-  const [test, setTest] = useState<CartItem[]>([]);
+  const [test, setTest] = useState<CartEntry[]>([]);
 
   return (
     <Provider value={{ state: test, dispatch: setTest }}>{children}</Provider>
