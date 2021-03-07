@@ -8,30 +8,34 @@ import Cart from "./pages/Cart";
 import Deals from "./pages/Deals";
 import ItemPage from "./pages/ItemPage";
 
+import { CartProvider } from './contexts/CartContext';
+
 import "./App.css";
 
 const App: React.FC = () => {
   return (
     <Router>
-      <Nav />
+      <CartProvider>
+        <Nav />
 
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
 
-        <Route path="/cart">
-          <Cart />
-        </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
 
-        <Route path="/deals">
-          <Deals />
-        </Route>
+          <Route path="/deals">
+            <Deals />
+          </Route>
 
-        <Route path="/item/:id">
-          <ItemPage />
-        </Route>
-      </Switch>
+          <Route path="/item/:id">
+            <ItemPage />
+          </Route>
+        </Switch>
+      </CartProvider>
     </Router>
   );
 };
