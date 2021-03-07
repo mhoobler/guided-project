@@ -6,7 +6,7 @@ import PageController from "../components/PageController";
 
 import useGetList from "../utils/useGetList";
 
-const querySize = 18;
+const querySize = 7;
 const pageSize = 6;
 
 const Home: React.FC = () => {
@@ -15,24 +15,16 @@ const Home: React.FC = () => {
   const [query, setQuery] = useState<ListQuery>({
     size: querySize,
     q: search,
-    from: 0,
+    from: (() => page * pageSize)(),
   });
   const itemsList = useGetList(query);
+  const itemsSlice = itemsList.slice(0, pageSize);
 
-  //Here we slice up the ItemList and handle resetting the query when the pagination calls for it
-  const p = (page * pageSize) % querySize;
-  const itemsSliced = [...itemsList].slice(p, p + pageSize);
   const handlePage = (n: number) => {
-    const newFrom = Math.floor(((page + n) * pageSize) / querySize) * querySize;
-
-    if (newFrom !== query.from) {
-      setQuery({
-        size: querySize,
-        q: search,
-        from: newFrom,
-      });
-    }
-
+    setQuery({
+      ...query,
+      from: (page + n) * pageSize,
+    });
     setPage(page + n);
   };
 
@@ -46,8 +38,8 @@ const Home: React.FC = () => {
 
       {/* Oops message shows for a bit after clearing search, should find a way to do spinner while loading results */}
       <div className="content">
-        {itemsSliced.length > 0 ? (
-          <ItemContainer itemsList={itemsSliced} />
+        {itemsSlice.length > 0 ? (
+          <ItemContainer itemsList={itemsSlice} />
         ) : search !== "" ? (
           <h2 className="center-text">No results</h2>
         ) : (
@@ -57,7 +49,7 @@ const Home: React.FC = () => {
       <PageController
         handlePage={handlePage}
         page={page}
-        isLast={itemsList.length < querySize}
+        isLast={itemsList.length <= pageSize}
         isFirst={page < 1}
       />
     </div>
