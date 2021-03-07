@@ -6,26 +6,17 @@ import PageController from "../components/PageController";
 
 import useGetList from "../utils/useGetList";
 
-const querySize = 7;
 const pageSize = 6;
 
 const Home: React.FC = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
-  const [query, setQuery] = useState<ListQuery>({
-    size: querySize,
-    q: search,
-    from: (() => page * pageSize)(),
-  });
-  const itemsList = useGetList(query);
+  const query: ListQuery = { q: search };
+  const itemsList = useGetList(page, query);
   const itemsSlice = itemsList.slice(0, pageSize);
 
   const handlePage = (n: number) => {
-    setQuery({
-      ...query,
-      from: (page + n) * pageSize,
-    });
-    setPage(page + n);
+    setPage(n);
     window.scrollTo(0, 0);
   };
 
