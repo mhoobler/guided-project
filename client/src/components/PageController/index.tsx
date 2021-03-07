@@ -21,7 +21,7 @@ const PageController: React.FC<PageControllerProps> = ({
         <div className="page-input-group row justify-center">&nbsp;</div>
       ) : (
         <div className="page-input-group row justify-center">
-          <button onClick={() => handlePage(0)}>First</button>
+          {/* <button onClick={() => handlePage(0)}>First</button> */}
           <button onClick={() => handlePage(-1)}>&#60;</button>
         </div>
       )}
@@ -31,7 +31,7 @@ const PageController: React.FC<PageControllerProps> = ({
       ) : (
         <div className="page-input-group row justify-center">
           <button onClick={() => handlePage(1)}>&#62;</button>
-          <button onClick={() => console.log("last")}>Last</button>
+          {/* <button onClick={() => console.log("last")}>Last</button> */}
         </div>
       )}
     </div>

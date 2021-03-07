@@ -3,6 +3,19 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-bottom: 3%;
+}
+
+.page-controller-container * {
+  font-size: 20px;
+  color: #013d55;
+}
+
+.page-controller-container > .page-input-group > button {
+  height: 40px;
+  width: 40px;
+  border-radius: 0;
+  border: 2px solid #999;
 }
 
 .page-input-group {
