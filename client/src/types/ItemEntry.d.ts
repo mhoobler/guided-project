@@ -10,5 +10,5 @@ type ItemEntry = {
 };
 
 interface CartEntry extends ItemEntry {
-  inCart: number
+  inCart: number;
 }

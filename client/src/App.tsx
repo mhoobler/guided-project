@@ -8,7 +8,7 @@ import Cart from "./pages/Cart";
 import Deals from "./pages/Deals";
 import ItemPage from "./pages/ItemPage";
 
-import { CartProvider } from './contexts/CartContext';
+import { CartProvider } from "./contexts/CartContext";
 
 import "./App.css";
 

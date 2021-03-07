@@ -18,15 +18,12 @@ const Home: React.FC = () => {
     from: 0,
   });
   const itemsList = useGetList(query);
-  console.log(itemsList);
-  const p = (page * pageSize) % querySize;
-  // console.log(p);
-  const itemsSliced = [...itemsList].slice(p, p + pageSize);
-  console.log(itemsSliced);
 
+  //Here we slice up the ItemList and handle resetting the query when the pagination calls for it
+  const p = (page * pageSize) % querySize;
+  const itemsSliced = [...itemsList].slice(p, p + pageSize);
   const handlePage = (n: number) => {
     const newFrom = Math.floor(((page + n) * pageSize) / querySize) * querySize;
-    console.log(newFrom);
 
     if (newFrom !== query.from) {
       setQuery({

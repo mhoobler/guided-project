@@ -1,14 +1,14 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import NavItem from "./NavItem";
 
-import { CartContext } from '../../contexts/CartContext';
+import { CartContext } from "../../contexts/CartContext";
 
 import "./Nav.css";
 
 const Nav: React.FC = () => {
-  const {state} = useContext(CartContext);
+  const { state } = useContext(CartContext);
   return (
     <nav>
       <div className="nav-logo">
