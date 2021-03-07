@@ -26,6 +26,7 @@ const Home: React.FC = () => {
       from: (page + n) * pageSize,
     });
     setPage(page + n);
+    window.scrollTo(0, 0);
   };
 
   return (
