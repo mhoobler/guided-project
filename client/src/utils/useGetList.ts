@@ -3,36 +3,39 @@ import { useState, useEffect } from "react";
 import API from "./API";
 
 const pageSize = 6;
-const querySize = 7;
 
-const useGetList = (page: number, params: ListQuery) => {
-  const [itemsList, setItemsList] = useState<ItemEntry[]>([]);
-  console.log({ page, params });
+type ReturnType = {
+  data?: ItemListResponse,
+  isLoading: boolean
+}
 
-  const paramsWithPage = (() => {
-    const NewParams = {
-      ...params,
-      size: querySize,
+const useGetList2 = (page: number, isOnSale?: boolean, q?: string): ReturnType => {
+  const [data, setData] = useState<ItemListResponse | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  useEffect( () => {
+    console.log('firing');
+    const params = {
+      page: page,
+      isOnSale: isOnSale,
+      q: q,
       from: page * pageSize,
-    };
+      size: pageSize
+    }
 
-    return NewParams;
-  })();
+    API.getList(params)
+    .then( (res) => {
+      const data: ItemListResponse = res.data;
+      setData(res.data);
+    })
+    .catch( (err) => console.log(err))
+    .finally( () => setIsLoading(false))
 
-  useEffect(() => {
-    console.log("fire");
-    API.getList(paramsWithPage)
-      .then((res) => {
-        console.log("ListQuery");
-        const { items } = res.data;
-        setItemsList(items);
-      })
-      .catch((err) => console.log(err));
-    // kind of brutish and inelegant
-    // eslint-disable-next-line
-  }, Object.values(paramsWithPage));
+}, [page, isOnSale, q])
 
-  return itemsList;
-};
 
-export default useGetList;
+  return {data, isLoading}
+}
+
+export default useGetList2;

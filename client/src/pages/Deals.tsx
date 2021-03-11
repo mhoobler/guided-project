@@ -7,29 +7,37 @@ import useGetList from "../utils/useGetList";
 const pageSize = 6;
 
 const Deals: React.FC = () => {
-  const query: ListQuery = { isOnSale: true };
   const [page, setPage] = useState(0);
-  const itemsList = useGetList(page, query);
-  const itemsSlice = itemsList.slice(0, pageSize);
+  const {data, isLoading} = useGetList(page, true);
 
-  const handlePage = (n: number) => {
-    setPage(n);
-    window.scrollTo(0, 0);
-  };
+  if(data && !isLoading){
 
-  return (
-    <div className="page-wrapper" id="Deals">
-      <div className="content">
-        <ItemContainer itemsList={itemsSlice} />
+    const {items, hasMore, next, total} = data
+    const itemsSlice = items.slice(0, pageSize);
+
+    const handlePage = (n: number) => {
+      setPage(n);
+      window.scrollTo(0, 0);
+    };
+
+    return (
+      <div className="page-wrapper" id="Deals">
+        <div className="content">
+          <ItemContainer itemsList={itemsSlice} />
+        </div>
+        <PageController
+          handlePage={handlePage}
+          page={page}
+          isLast={!hasMore}
+          isFirst={page < 1}
+        />
       </div>
-      <PageController
-        handlePage={handlePage}
-        page={page}
-        isLast={itemsList.length <= pageSize}
-        isFirst={page < 1}
-      />
-    </div>
-  );
+    );
+
+  }else{
+  
+    return <div>Uh oh</div>
+  }
 };
 
 export default Deals;

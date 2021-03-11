@@ -4,48 +4,50 @@ import Searchbar from "../components/Searchbar";
 import ItemContainer from "../components/ItemContainer";
 import PageController from "../components/PageController";
 
-import useGetList from "../utils/useGetList";
-
-const pageSize = 6;
+import useGetList from '../utils/useGetList';
 
 const Home: React.FC = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
-  const query: ListQuery = { q: search };
-  const itemsList = useGetList(page, query);
-  const itemsSlice = itemsList.slice(0, pageSize);
+  const {data, isLoading} = useGetList(page, undefined, search);
 
-  const handlePage = (n: number) => {
-    setPage(n);
-    window.scrollTo(0, 0);
-  };
+  if(data && !isLoading) {
+    const {items, hasMore, next, total} = data;
 
-  return (
-    <div className="page-wrapper" id="Home">
-      <Searchbar
-        handleSearch={(str: string) => {
-          setSearch(str);
-        }}
-      />
+    const handlePage = (n: number) => {
+      setPage(n);
+      window.scrollTo(0, 0);
+    };
 
-      {/* Oops message shows for a bit after clearing search, should find a way to do spinner while loading results */}
-      <div className="content">
-        {itemsSlice.length > 0 ? (
-          <ItemContainer itemsList={itemsSlice} />
-        ) : search !== "" ? (
-          <h2 className="center-text">No results</h2>
-        ) : (
-          <h2 className="center-text">Oops, looks like something went wrong</h2>
-        )}
+    return (
+      <div className="page-wrapper" id="Home">
+        <Searchbar
+          handleSearch={(str: string) => {
+            setSearch(str);
+          }}
+        />
+
+        {/* Oops message shows for a bit after clearing search, should find a way to do spinner while loading results */}
+        <div className="content">
+          {items.length > 0 ? (
+            <ItemContainer itemsList={items} />
+          ) : search !== "" ? (
+            <h2 className="center-text">No results</h2>
+          ) : (
+            <h2 className="center-text">Oops, looks like something went wrong</h2>
+          )}
+        </div>
+        <PageController
+          handlePage={handlePage}
+          page={page}
+          isLast={!hasMore}
+          isFirst={page < 1}
+        />
       </div>
-      <PageController
-        handlePage={handlePage}
-        page={page}
-        isLast={itemsList.length <= pageSize}
-        isFirst={page < 1}
-      />
-    </div>
-  );
+    );
+  } else {
+    return <div> Uh oh </div>
+  }
 };
 
 export default Home;
