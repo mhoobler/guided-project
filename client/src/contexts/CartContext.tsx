@@ -1,4 +1,3 @@
-import { KeyObject } from "node:crypto";
 import { FC, createContext, useState } from "react";
 
 const CartContext = createContext<{
@@ -17,9 +16,9 @@ const CartProvider: FC = ({ children }) => {
   const [cart, setCart] = useState<CartState>({});
   const [total, setTotal] = useState(0);
 
-  const getTotal = () => {
+  const getTotal = (n: number) => {
     const keys = Object.keys(cart);
-    var total = 0;
+    var total = n;
 
     keys.forEach((e: string) => {
       total += cart[e].inCart;
@@ -38,13 +37,13 @@ const CartProvider: FC = ({ children }) => {
       let newCart = { ...cart };
       delete newCart[item._id];
       setCart(newCart);
-      setTotal(getTotal());
+      setTotal(getTotal(quantity));
     } else {
       setCart({
         ...cart,
         [item._id]: cartEntry,
       });
-      setTotal(getTotal());
+      setTotal(getTotal(quantity));
     }
   };
 

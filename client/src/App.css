@@ -16,6 +16,11 @@ code {
   padding: 5%;
 }
 
+button {
+  background: none;
+  border: none;
+}
+
 button:hover {
   cursor: pointer;
 }

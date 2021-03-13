@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Ratings from "../components/Ratings";
@@ -6,6 +6,8 @@ import Price from "../components/Price";
 import ErrorHandler from "../components/ErrorHandler";
 import QuantitySelect from "../components/QuantitySelect";
 import ButtonContainer from "../components/ButtonContainer";
+
+import { CartContext } from "../contexts/CartContext";
 
 import useGetItem from "../utils/useGetItem";
 
@@ -21,6 +23,8 @@ const ItemPage: React.FC = () => {
 
   const [quantity, setQuantity] = useState(0);
   const [insufficient, setInsufficient] = useState(false);
+  const { state, dispatch } = useContext(CartContext);
+  const inCart = state[params.id] ? state[params.id].inCart : 0;
 
   if (typeof item === "string") {
     return (
@@ -30,11 +34,19 @@ const ItemPage: React.FC = () => {
     );
   } else {
     const handleQuantityChange = (n: number) => {
-      if (n > item.stockCount) {
+      if (n + inCart > item.stockCount) {
         setInsufficient(true);
       } else {
         setInsufficient(false);
         setQuantity(n);
+      }
+    };
+
+    const handleAddToCart = () => {
+      if (inCart + quantity > item.stockCount) {
+        setInsufficient(true);
+      } else {
+        dispatch(item, quantity);
       }
     };
 
@@ -63,7 +75,9 @@ const ItemPage: React.FC = () => {
               />
 
               <ButtonContainer align="left">
-                <div className="item-add">Add to Cart</div>
+                <button onClick={handleAddToCart} className="item-add">
+                  Add to Cart
+                </button>
               </ButtonContainer>
 
               <ErrorHandler inCart={1} insufficient={insufficient} />

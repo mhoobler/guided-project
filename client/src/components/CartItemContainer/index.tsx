@@ -16,7 +16,7 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
 
   return (
     <div className="cart-item-container">
-      <div>item.name</div>
+      <div>{cartEntry.name}</div>
       <input type="number" value={cartEntry.inCart} onChange={handleChange} />
     </div>
   );
