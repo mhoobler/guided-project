@@ -3,7 +3,7 @@ import React from "react";
 import "./Button.css";
 
 type ButtonContainerProps = {
-  variant?: "danger"
+  variant?: "danger";
   align?: "left" | "right";
 };
 
@@ -14,7 +14,11 @@ const ButtonContainer: React.FC<ButtonContainerProps> = ({
   children,
 }) => {
   return (
-    <div className={`button-container ${align ? `align-${align}` : ""} ${variant ? variant : ""}`}>
+    <div
+      className={`button-container ${align ? `align-${align}` : ""} ${
+        variant ? variant : ""
+      }`}
+    >
       <div>{children}</div>
     </div>
   );

@@ -77,7 +77,7 @@ const ItemPage: React.FC = () => {
 
               <ButtonContainer align="left">
                 <button onClick={handleAddToCart} className="item-add">
-                  {inCart === 0 ? 'Add to Cart' : 'Update Cart'}
+                  {inCart === 0 ? "Add to Cart" : "Update Cart"}
                 </button>
               </ButtonContainer>
 

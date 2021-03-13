@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Deals from "./pages/Deals";
 import ItemPage from "./pages/ItemPage";
+import Checkout from "./pages/Checkout";
 
 import { CartProvider } from "./contexts/CartContext";
 
@@ -33,6 +34,10 @@ const App: React.FC = () => {
 
           <Route path="/item/:id">
             <ItemPage />
+          </Route>
+
+          <Route path="/checkout">
+            <Checkout />
           </Route>
         </Switch>
       </CartProvider>

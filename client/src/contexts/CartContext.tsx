@@ -19,10 +19,12 @@ const dummyState: CartState = {
 const CartContext = createContext<{
   state: CartState;
   total: number;
+  clearCart: () => void;
   dispatch: CartDispatch;
 }>({
   state: {},
   total: 0,
+  clearCart: () => {},
   dispatch: () => {},
 });
 
@@ -32,6 +34,10 @@ const CartProvider: FC = ({ children }) => {
   //Remove dummy state
   const [cart, setCart] = useState<CartState>(dummyState);
   const [total, setTotal] = useState(0);
+
+  const clearCart = () => {
+    setCart({});
+  };
 
   const setItem = (item: ItemEntry | CartEntry, quantity: number) => {
     const cartEntry = {
@@ -70,7 +76,7 @@ const CartProvider: FC = ({ children }) => {
   };
 
   return (
-    <Provider value={{ state: cart, total, dispatch: setItem }}>
+    <Provider value={{ state: cart, total, clearCart, dispatch: setItem }}>
       {children}
     </Provider>
   );

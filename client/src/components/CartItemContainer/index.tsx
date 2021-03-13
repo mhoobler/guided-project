@@ -1,10 +1,10 @@
 import React from "react";
 
-import Price from '../Price';
-import QuantitySelect from '../QuantitySelect';
-import ButtonContainer from '../ButtonContainer';
+import Price from "../Price";
+import QuantitySelect from "../QuantitySelect";
+import ButtonContainer from "../ButtonContainer";
 
-import './CartItemContainer.css';
+import "./CartItemContainer.css";
 
 type CartItemContainerProps = {
   dispatch: CartDispatch;
@@ -16,10 +16,11 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
   cartEntry,
 }) => {
   const handleChange = (n: number) => {
-    if(n === 0){
-      const message = "Are you sure you want to remove this item from your cart?";
+    if (n === 0) {
+      const message =
+        "Are you sure you want to remove this item from your cart?";
       let bool = window.confirm(message);
-      if(bool){
+      if (bool) {
         dispatch(cartEntry, 0);
       }
     } else if (!(n > cartEntry.stockCount)) {
@@ -32,7 +33,7 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
     <div className="cart-item-container row">
       {/* Cart Image */}
       <div className="cart-item-image image-container">
-        <img src={cartEntry.imageUrl} alt={cartEntry.name}/>
+        <img src={cartEntry.imageUrl} alt={cartEntry.name} />
       </div>
       {/* Cart Item Controls */}
       <div className="cart-item-controls col">
@@ -41,17 +42,26 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
         </div>
         <div className="inputs-container row">
           <div className="quantity-container row">
-            <QuantitySelect value={cartEntry.inCart} handleChange={handleChange} />
+            <QuantitySelect
+              value={cartEntry.inCart}
+              handleChange={handleChange}
+            />
           </div>
           <div className="remove-container">
-            <ButtonContainer variant='danger'>
-              <button onClick={() => {handleChange(0)}}>Remove</button>
+            <ButtonContainer variant="danger">
+              <button
+                onClick={() => {
+                  handleChange(0);
+                }}
+              >
+                Remove
+              </button>
             </ButtonContainer>
           </div>
         </div>
       </div>
       {/* Cart Price */}
-      <Price price={cartEntry.price}/>
+      <Price price={cartEntry.price} />
     </div>
   );
 };
