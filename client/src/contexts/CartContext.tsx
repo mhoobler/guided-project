@@ -31,8 +31,8 @@ const CartContext = createContext<{
 const { Provider } = CartContext;
 
 const CartProvider: FC = ({ children }) => {
-  //Remove dummy state
-  const [cart, setCart] = useState<CartState>(dummyState);
+  //Should probably useRef here
+  const [cart, setCart] = useState<CartState>({});
   const [total, setTotal] = useState(0);
 
   const clearCart = () => {
