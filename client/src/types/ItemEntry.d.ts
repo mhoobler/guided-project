@@ -8,3 +8,7 @@ type ItemEntry = {
   stockCount: number;
   imageUrl: string;
 };
+
+interface CartEntry extends ItemEntry {
+  inCart: number;
+}

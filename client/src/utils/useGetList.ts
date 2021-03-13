@@ -2,24 +2,40 @@ import { useState, useEffect } from "react";
 
 import API from "./API";
 
-const useGetList = (params: ListQuery) => {
-  const [itemsList, setItemsList] = useState<ItemEntry[]>([]);
-  // declare the props as independent variables inorder to handle the rerenders
-  const { from, size, sortField, sortDir, isOnSale, q } = params;
+const pageSize = 6;
 
-  useEffect(() => {
-    API.getList(params)
-      .then((res) => {
-        console.log("ListQuery");
-        const { items } = res.data;
-        setItemsList(items);
-      })
-      .catch((err) => console.log(err));
-    // kind of brutish and inelegant
-    // eslint-disable-next-line
-  }, [from, size, sortField, sortDir, isOnSale, q]);
-
-  return itemsList;
+type ReturnType = {
+  data?: ItemListResponse;
+  isLoading: boolean;
 };
 
-export default useGetList;
+const useGetList2 = (
+  page: number,
+  isOnSale?: boolean,
+  q?: string
+): ReturnType => {
+  const [data, setData] = useState<ItemListResponse | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    console.log("firing");
+    const params = {
+      page: page,
+      isOnSale: isOnSale,
+      q: q,
+      from: page * pageSize,
+      size: pageSize,
+    };
+
+    API.getList(params)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  }, [page, isOnSale, q]);
+
+  return { data, isLoading };
+};
+
+export default useGetList2;

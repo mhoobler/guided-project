@@ -1,0 +1,40 @@
+.page-controller-container {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 3%;
+}
+
+.page-controller-container * {
+  font-size: 20px;
+  color: #013d55;
+}
+
+.page-controller-container > .page-input-group > button {
+  height: 40px;
+  min-width: 40px;
+  max-width: 80px;
+  border-radius: 0;
+  border: 2px solid #999;
+}
+
+.page-input-group {
+  height: 100%;
+  width: 7rem;
+  text-align: center;
+  line-height: 40px;
+}
+
+.page-input-group > * {
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-center {
+  justify-content: center;
+}

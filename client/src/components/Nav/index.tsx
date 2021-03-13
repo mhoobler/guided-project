@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import NavItem from "./NavItem";
 
+import { CartContext } from "../../contexts/CartContext";
+
 import "./Nav.css";
 
 const Nav: React.FC = () => {
+  const { state } = useContext(CartContext);
   return (
     <nav>
       <div className="nav-logo">
@@ -15,7 +18,7 @@ const Nav: React.FC = () => {
       <ul className="nav-list">
         <NavItem to="/">Home</NavItem>
         <NavItem to="/deals">Deals</NavItem>
-        <NavItem to="/cart">Cart</NavItem>
+        <NavItem to="/cart">Cart {Object.keys(state).length}</NavItem>
       </ul>
     </nav>
   );
