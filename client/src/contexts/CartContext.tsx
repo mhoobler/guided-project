@@ -1,10 +1,13 @@
+import { KeyObject } from "node:crypto";
 import { FC, createContext, useState } from "react";
 
 const CartContext = createContext<{
   state: CartState;
-  dispatch: (item: ItemEntry, quantity: number) => void;
+  total: number;
+  dispatch: CartDispatch;
 }>({
   state: {},
+  total: 0,
   dispatch: () => {},
 });
 
@@ -12,22 +15,43 @@ const { Provider } = CartContext;
 
 const CartProvider: FC = ({ children }) => {
   const [cart, setCart] = useState<CartState>({});
+  const [total, setTotal] = useState(0);
+
+  const getTotal = () => {
+    const keys = Object.keys(cart);
+    var total = 0;
+
+    keys.forEach((e: string) => {
+      total += cart[e].inCart;
+    });
+
+    return total;
+  };
 
   const setItem = (item: ItemEntry, quantity: number) => {
+    const cartEntry = {
+      ...item,
+      inCart: quantity,
+    };
+
     if (quantity === 0) {
       let newCart = { ...cart };
       delete newCart[item._id];
       setCart(newCart);
+      setTotal(getTotal());
     } else {
       setCart({
         ...cart,
-        [item._id]: item,
+        [item._id]: cartEntry,
       });
+      setTotal(getTotal());
     }
   };
 
   return (
-    <Provider value={{ state: cart, dispatch: setItem }}>{children}</Provider>
+    <Provider value={{ state: cart, total, dispatch: setItem }}>
+      {children}
+    </Provider>
   );
 };
 

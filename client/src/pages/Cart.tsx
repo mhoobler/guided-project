@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 
+import CartItemContainer from '../components/CartItemContainer';
+
 import { CartContext } from "../contexts/CartContext";
 
 const Cart: React.FC = () => {
@@ -8,7 +10,7 @@ const Cart: React.FC = () => {
   return (
     <div>
       {keys.map((e: string) => {
-        return <div key={e}>{state[e]._id}</div>;
+        return <CartItemContainer dispatch={dispatch} cartEntry={state[e]}/>
       })}
     </div>
   );
