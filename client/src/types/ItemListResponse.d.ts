@@ -1,6 +1,6 @@
 type ItemListResponse = {
-  hasMore: boolean,
-  items: ItemEntry[],
-  next: number,
-  total: number
-}
+  hasMore: boolean;
+  items: ItemEntry[];
+  next: number;
+  total: number;
+};

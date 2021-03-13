@@ -8,12 +8,10 @@ const pageSize = 6;
 
 const Deals: React.FC = () => {
   const [page, setPage] = useState(0);
-  const {data, isLoading} = useGetList(page, true);
+  const { data, isLoading } = useGetList(page, true);
 
-  if(data && !isLoading){
-
-    const {items, hasMore, next, total} = data
-    const itemsSlice = items.slice(0, pageSize);
+  if (data && !isLoading) {
+    const { items, hasMore } = data;
 
     const handlePage = (n: number) => {
       setPage(n);
@@ -23,7 +21,11 @@ const Deals: React.FC = () => {
     return (
       <div className="page-wrapper" id="Deals">
         <div className="content">
-          <ItemContainer itemsList={itemsSlice} />
+          {items.length > 0 ? (
+            <ItemContainer itemsList={items} />
+          ) : (
+            <h2 className="center-text">No results</h2>
+          )}
         </div>
         <PageController
           handlePage={handlePage}
@@ -33,10 +35,10 @@ const Deals: React.FC = () => {
         />
       </div>
     );
-
-  }else{
-  
-    return <div>Uh oh</div>
+  } else {
+    return (
+      <h2 className="center-text">Oops, looks like something went wrong</h2>
+    );
   }
 };
 

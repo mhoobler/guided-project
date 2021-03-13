@@ -4,15 +4,15 @@ import Searchbar from "../components/Searchbar";
 import ItemContainer from "../components/ItemContainer";
 import PageController from "../components/PageController";
 
-import useGetList from '../utils/useGetList';
+import useGetList from "../utils/useGetList";
 
 const Home: React.FC = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
-  const {data, isLoading} = useGetList(page, undefined, search);
+  const { data, isLoading } = useGetList(page, undefined, search);
 
-  if(data && !isLoading) {
-    const {items, hasMore, next, total} = data;
+  if (data && !isLoading) {
+    const { items, hasMore } = data;
 
     const handlePage = (n: number) => {
       setPage(n);
@@ -31,10 +31,8 @@ const Home: React.FC = () => {
         <div className="content">
           {items.length > 0 ? (
             <ItemContainer itemsList={items} />
-          ) : search !== "" ? (
-            <h2 className="center-text">No results</h2>
           ) : (
-            <h2 className="center-text">Oops, looks like something went wrong</h2>
+            <h2 className="center-text">No results</h2>
           )}
         </div>
         <PageController
@@ -46,7 +44,9 @@ const Home: React.FC = () => {
       </div>
     );
   } else {
-    return <div> Uh oh </div>
+    return (
+      <h2 className="center-text">Oops, looks like something went wrong</h2>
+    );
   }
 };
 
