@@ -36,6 +36,10 @@ const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
     };
   }, [escapeClear]);
 
+  const handleKeyUp = (evt: any) => {
+    console.log(evt);
+  }
+
   return (
     <div className="search-container">
       {/* Search bar has VISUAL BUG */}
@@ -44,6 +48,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
         type="text"
         placeholder="Search"
         value={input}
+        onKeyUp={handleKeyUp}
         onChange={(evt) => {
           setInput(evt.currentTarget.value);
         }}

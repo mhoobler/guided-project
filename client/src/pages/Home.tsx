@@ -15,21 +15,21 @@ const Home: React.FC = () => {
     const { items, hasMore, total } = data;
 
     const handlePage = (evt: React.MouseEvent) => {
-      const value = evt.currentTarget.getAttribute('data-value');
-      switch(value){
-        case("-1"): 
+      const value = evt.currentTarget.getAttribute("data-value");
+      switch (value) {
+        case "-1":
           setPage(page - 1);
           break;
-        case("1"):
+        case "1":
           setPage(page + 1);
           break;
-        case("FIRST"):
+        case "FIRST":
           setPage(0);
           break;
-        case("LAST"):
-          setPage( Math.floor(total / 6) );
+        case "LAST":
+          setPage(Math.floor(total / 6));
           break;
-        default: 
+        default:
           throw new Error("Pagination mishandled");
       }
       window.scrollTo(0, 0);
@@ -59,10 +59,12 @@ const Home: React.FC = () => {
         />
       </div>
     );
-  } else {
+  } else if (!data && isLoading === false) {
     return (
       <h2 className="center-text">Oops, looks like something went wrong</h2>
     );
+  } else {
+    return <h2 className="center-text">Loading</h2>;
   }
 };
 

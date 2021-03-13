@@ -29,7 +29,6 @@ const useGetList2 = (
 
     API.getList(params)
       .then((res) => {
-        const data: ItemListResponse = res.data;
         setData(res.data);
       })
       .catch((err) => console.log(err))

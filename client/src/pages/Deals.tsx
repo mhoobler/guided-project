@@ -49,10 +49,12 @@ const Deals: React.FC = () => {
         />
       </div>
     );
-  } else {
+  } else if (!data && isLoading === false) {
     return (
       <h2 className="center-text">Oops, looks like something went wrong</h2>
     );
+  } else {
+    return <h2 className="center-text">Loading</h2>;
   }
 };
 
