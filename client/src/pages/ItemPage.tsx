@@ -19,7 +19,7 @@ type Params = {
 
 const ItemPage: React.FC = () => {
   const params: Params = useParams();
-  const item = useGetItem(params.id);
+  const { item, isLoading } = useGetItem(params.id);
 
   const [quantity, setQuantity] = useState(0);
   const [insufficient, setInsufficient] = useState(false);
@@ -27,13 +27,7 @@ const ItemPage: React.FC = () => {
   const inCart = state[params.id] ? state[params.id].inCart : 0;
   console.log(item);
 
-  if (typeof item === "string") {
-    return (
-      <div>
-        <h2>{item}</h2>
-      </div>
-    );
-  } else {
+  if (!isLoading && item !== undefined) {
     const handleQuantityChange = (n: number) => {
       if (n > item.stockCount) {
         setInsufficient(true);
@@ -87,6 +81,10 @@ const ItemPage: React.FC = () => {
         </div>
       </div>
     );
+  } else if (!item && isLoading === false) {
+    return <h2 className="center-text"> Sorry, we couldn't find that item </h2>;
+  } else {
+    return <h2 className="center-text"> Loading </h2>;
   }
 };
 export default ItemPage;

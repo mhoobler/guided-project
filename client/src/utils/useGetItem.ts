@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import API from "./API";
 
 const useGetItem = (_id: string) => {
-  const [item, setItem] = useState<ItemEntry | null>(null);
+  const [item, setItem] = useState<ItemEntry | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     API.getItem(_id)
@@ -12,14 +13,13 @@ const useGetItem = (_id: string) => {
         console.log(item);
         setItem(item);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setIsLoading(false));
   }, [_id]);
 
-  if (item !== null) {
-    return item;
-  } else {
-    return "Sorry we couldn't find that item";
-  }
+  return { item, isLoading };
 };
 
 export default useGetItem;
