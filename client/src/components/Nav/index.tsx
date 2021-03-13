@@ -19,7 +19,8 @@ const Nav: React.FC = () => {
       <ul className="nav-list">
         <NavItem to="/">Home</NavItem>
         <NavItem to="/deals">Deals</NavItem>
-        <NavItem to="/cart">Cart {total}</NavItem>
+        <NavItem to="/cart">Cart</NavItem>
+        <div className='total-pill'>{total}</div>
       </ul>
     </nav>
   );

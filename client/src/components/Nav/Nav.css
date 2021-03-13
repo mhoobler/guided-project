@@ -47,3 +47,14 @@ nav a {
 .nav-item > .active {
   border-bottom: 3px solid white;
 }
+
+.total-pill {
+  height: 1rem;
+  width: 1rem;
+  padding-left: 0.25rem;
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  background-color: red;
+  color: white;
+  border-radius: 50px;
+}
