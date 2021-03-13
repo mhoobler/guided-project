@@ -43,7 +43,6 @@ const Home: React.FC = () => {
           }}
         />
 
-        {/* Oops message shows for a bit after clearing search, should find a way to do spinner while loading results */}
         <div className="content">
           {items.length > 0 ? (
             <ItemContainer itemsList={items} />

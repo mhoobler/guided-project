@@ -2,12 +2,12 @@ import React from "react";
 
 import "./ErrorHandler.css";
 
-type Props = {
+type ErrorProps = {
   inCart: number;
   insufficient: boolean;
 };
 
-const ErrorHandler: React.FC<Props> = ({ inCart, insufficient }) => {
+const ErrorHandler: React.FC<ErrorProps> = ({ inCart, insufficient }) => {
   return (
     <div className="error-container">
       {inCart > 0 ? (

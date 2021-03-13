@@ -17,28 +17,11 @@ const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
     handleSearch("");
   }, [handleSearch]);
 
-  const escapeClear = useCallback(
-    (evt: any) => {
-      const inp = document.getElementById("search-input");
-      const focus = document.activeElement;
-      if (inp === focus && evt.key === "Escape") {
-        clearSearch();
-      }
-    },
-    [clearSearch]
-  );
-
-  useEffect(() => {
-    window.addEventListener("keyup", escapeClear);
-
-    return () => {
-      window.removeEventListener("keyup", escapeClear);
-    };
-  }, [escapeClear]);
-
   const handleKeyUp = (evt: any) => {
-    console.log(evt);
-  }
+    if (evt.key === "Escape") {
+      return clearSearch();
+    }
+  };
 
   return (
     <div className="search-container">
@@ -48,10 +31,8 @@ const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
         type="text"
         placeholder="Search"
         value={input}
-        onKeyUp={handleKeyUp}
-        onChange={(evt) => {
-          setInput(evt.currentTarget.value);
-        }}
+        onChange={(evt) => setInput(evt.target.value)}
+        onKeyDownCapture={handleKeyUp}
       />
       <div>
         <button className="clear-search" onClick={clearSearch}>
