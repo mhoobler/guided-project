@@ -28,3 +28,9 @@
   vertical-align: middle;
   line-height: 40px;
 }
+
+/* Variants */
+.button-container.danger > div {
+  background-color: #C41f35;
+  color: white;
+}

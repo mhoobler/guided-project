@@ -1,0 +1,9 @@
+#Cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#Cart > .content {
+  padding: 5% 20%;
+}

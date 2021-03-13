@@ -29,12 +29,3 @@
 .page-input-group > * {
   margin: auto;
 }
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.justify-center {
-  justify-content: center;
-}

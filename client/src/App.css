@@ -12,10 +12,7 @@ code {
     monospace;
 }
 
-.content {
-  padding: 5%;
-}
-
+/* General Element Configuration */
 button {
   background: none;
   border: none;
@@ -25,6 +22,21 @@ button:hover {
   cursor: pointer;
 }
 
+/* General Classes */
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
 .center-text {
   text-align: center;
+}
+
+/* Page Classes */
+.content {
+  padding: 5%;
 }
