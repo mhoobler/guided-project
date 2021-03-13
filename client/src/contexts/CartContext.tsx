@@ -1,20 +1,20 @@
 import { FC, createContext, useState } from "react";
 
 //Testing purposes
-const dummyState: CartState = {
-  "5fbfff7d58aa65167efb52b9": {
-    avgRating: 0,
-    description: "Your mom won't be able to wait to hear you practice!",
-    imageUrl:
-      "https://st-super-store.s3-us-west-2.amazonaws.com/images/bag_pipes.jpg",
-    inCart: 1,
-    isOnSale: false,
-    name: "Bag Pipes",
-    price: 120,
-    stockCount: 2,
-    _id: "5fbfff7d58aa65167efb52b9",
-  },
-};
+//const dummyState: CartState = {
+//  "5fbfff7d58aa65167efb52b9": {
+//    avgRating: 0,
+//    description: "Your mom won't be able to wait to hear you practice!",
+//    imageUrl:
+//      "https://st-super-store.s3-us-west-2.amazonaws.com/images/bag_pipes.jpg",
+//    inCart: 1,
+//    isOnSale: false,
+//    name: "Bag Pipes",
+//    price: 120,
+//    stockCount: 2,
+//    _id: "5fbfff7d58aa65167efb52b9",
+//  },
+//};
 
 const CartContext = createContext<{
   state: CartState;
@@ -37,6 +37,7 @@ const CartProvider: FC = ({ children }) => {
 
   const clearCart = () => {
     setCart({});
+    setTotal(0);
   };
 
   const setItem = (item: ItemEntry | CartEntry, quantity: number) => {
