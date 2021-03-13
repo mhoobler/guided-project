@@ -25,6 +25,7 @@ const ItemPage: React.FC = () => {
   const [insufficient, setInsufficient] = useState(false);
   const { state, dispatch } = useContext(CartContext);
   const inCart = state[params.id] ? state[params.id].inCart : 0;
+  console.log(item);
 
   if (typeof item === "string") {
     return (
@@ -34,7 +35,7 @@ const ItemPage: React.FC = () => {
     );
   } else {
     const handleQuantityChange = (n: number) => {
-      if (n + inCart > item.stockCount) {
+      if (n > item.stockCount) {
         setInsufficient(true);
       } else {
         setInsufficient(false);
@@ -43,7 +44,7 @@ const ItemPage: React.FC = () => {
     };
 
     const handleAddToCart = () => {
-      if (inCart + quantity > item.stockCount) {
+      if (quantity > item.stockCount) {
         setInsufficient(true);
       } else {
         dispatch(item, quantity);
@@ -76,11 +77,11 @@ const ItemPage: React.FC = () => {
 
               <ButtonContainer align="left">
                 <button onClick={handleAddToCart} className="item-add">
-                  Add to Cart
+                  {inCart === 0 ? 'Add to Cart' : 'Update Cart'}
                 </button>
               </ButtonContainer>
 
-              <ErrorHandler inCart={1} insufficient={insufficient} />
+              <ErrorHandler inCart={inCart} insufficient={insufficient} />
             </div>
           </div>
         </div>

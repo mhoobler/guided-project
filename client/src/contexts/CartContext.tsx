@@ -16,34 +16,39 @@ const CartProvider: FC = ({ children }) => {
   const [cart, setCart] = useState<CartState>({});
   const [total, setTotal] = useState(0);
 
-  const getTotal = (n: number) => {
-    const keys = Object.keys(cart);
-    var total = n;
-
-    keys.forEach((e: string) => {
-      total += cart[e].inCart;
-    });
-
-    return total;
-  };
-
   const setItem = (item: ItemEntry | CartEntry, quantity: number) => {
+
     const cartEntry = {
       ...item,
       inCart: quantity,
     };
 
-    if (quantity === 0) {
+    if (quantity === 0 && cart[item._id]) {
+      const change = -1 * cart[item._id].inCart;
       let newCart = { ...cart };
+
       delete newCart[item._id];
       setCart(newCart);
-      setTotal(getTotal(quantity));
+      setTotal(total + change);
     } else {
-      setCart({
-        ...cart,
-        [item._id]: cartEntry,
-      });
-      setTotal(getTotal(quantity));
+      if(cart[item._id]){
+        const current = cart[item._id];
+        const change = current.inCart === quantity ? 0 : quantity - current.inCart;
+        
+        setCart({
+          ...cart,
+          [item._id]: cartEntry
+        });
+        setTotal(total + change);
+      } else {
+        const change = quantity;
+
+        setCart({
+          ...cart,
+          [item._id]: cartEntry,
+        });
+        setTotal(total + change);
+      }
     }
   };
 
