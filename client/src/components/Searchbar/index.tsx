@@ -25,7 +25,6 @@ const Searchbar: React.FC<SearchbarProps> = ({ handleSearch }) => {
 
   return (
     <div className="search-container">
-      {/* Search bar has VISUAL BUG */}
       <input
         id="search-input"
         type="text"
