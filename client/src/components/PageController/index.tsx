@@ -3,7 +3,7 @@ import React from "react";
 import "./PageController.css";
 
 type PageControllerProps = {
-  handlePage: (n: number) => void;
+  handlePage: (evt: React.MouseEvent) => void;
   page: number;
   isLast: boolean;
   isFirst: boolean;
@@ -15,14 +15,20 @@ const PageController: React.FC<PageControllerProps> = ({
   isFirst,
   isLast,
 }) => {
+
+  //Return empty element if page is First and Last
+  if(isFirst && isLast) {
+    return <div></div>
+  }
+
   return (
     <div className="page-controller-container row">
       {isFirst ? (
         <div className="page-input-group row justify-center">&nbsp;</div>
       ) : (
         <div className="page-input-group row justify-center">
-          {/* <button onClick={() => handlePage(0)}>First</button> */}
-          <button onClick={() => handlePage(page - 1)}>&#60;</button>
+          <button data-value={"FIRST"} onClick={handlePage}>First</button>
+          <button data-value={-1} onClick={handlePage}>&#60;</button>
         </div>
       )}
       <div className="page-input-group">{page + 1}</div>
@@ -30,8 +36,8 @@ const PageController: React.FC<PageControllerProps> = ({
         <div className="page-input-group row justify-center">&nbsp;</div>
       ) : (
         <div className="page-input-group row justify-center">
-          <button onClick={() => handlePage(page + 1)}>&#62;</button>
-          {/* <button onClick={() => console.log("last")}>Last</button> */}
+          <button data-value={1} onClick={handlePage}>&#62;</button>
+          <button data-value={"LAST"} onClick={handlePage}>Last</button>
         </div>
       )}
     </div>

@@ -4,17 +4,31 @@ import ItemContainer from "../components/ItemContainer";
 import PageController from "../components/PageController";
 import useGetList from "../utils/useGetList";
 
-const pageSize = 6;
-
 const Deals: React.FC = () => {
   const [page, setPage] = useState(0);
   const { data, isLoading } = useGetList(page, true);
 
   if (data && !isLoading) {
-    const { items, hasMore } = data;
+    const { items, hasMore, total } = data;
 
-    const handlePage = (n: number) => {
-      setPage(n);
+    const handlePage = (evt: React.MouseEvent) => {
+      const value = evt.currentTarget.getAttribute("data-value");
+      switch (value) {
+        case "-1":
+          setPage(page - 1);
+          break;
+        case "1":
+          setPage(page + 1);
+          break;
+        case "FIRST":
+          setPage(0);
+          break;
+        case "LAST":
+          setPage(Math.floor(total / 6));
+          break;
+        default:
+          throw new Error("Pagination mishandled");
+      }
       window.scrollTo(0, 0);
     };
 

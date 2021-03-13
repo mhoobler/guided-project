@@ -12,10 +12,26 @@ const Home: React.FC = () => {
   const { data, isLoading } = useGetList(page, undefined, search);
 
   if (data && !isLoading) {
-    const { items, hasMore } = data;
+    const { items, hasMore, total } = data;
 
-    const handlePage = (n: number) => {
-      setPage(n);
+    const handlePage = (evt: React.MouseEvent) => {
+      const value = evt.currentTarget.getAttribute('data-value');
+      switch(value){
+        case("-1"): 
+          setPage(page - 1);
+          break;
+        case("1"):
+          setPage(page + 1);
+          break;
+        case("FIRST"):
+          setPage(0);
+          break;
+        case("LAST"):
+          setPage( Math.floor(total / 6) );
+          break;
+        default: 
+          throw new Error("Pagination mishandled");
+      }
       window.scrollTo(0, 0);
     };
 
