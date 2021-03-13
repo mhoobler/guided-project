@@ -12,3 +12,7 @@ type ItemEntry = {
 interface CartEntry extends ItemEntry {
   inCart: number;
 }
+
+interface CartState {
+  [_id: string]: ItemEntry;
+}

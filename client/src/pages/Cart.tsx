@@ -4,10 +4,11 @@ import { CartContext } from "../contexts/CartContext";
 
 const Cart: React.FC = () => {
   const { state, dispatch } = useContext(CartContext);
+  const keys = Object.keys(state);
   return (
     <div>
-      {state.map((e: CartEntry) => {
-        return <div>{e._id}</div>;
+      {keys.map((e: string) => {
+        return <div key={e}>{state[e]._id}</div>;
       })}
     </div>
   );

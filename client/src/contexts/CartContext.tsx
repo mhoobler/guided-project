@@ -1,20 +1,33 @@
-import React, { FC, createContext, useState } from "react";
+import { FC, createContext, useState } from "react";
 
 const CartContext = createContext<{
-  state: CartEntry[];
-  dispatch: React.Dispatch<React.SetStateAction<CartEntry[]>>;
+  state: CartState;
+  dispatch: (item: ItemEntry, quantity: number) => void;
 }>({
-  state: [],
+  state: {},
   dispatch: () => {},
 });
 
 const { Provider } = CartContext;
 
 const CartProvider: FC = ({ children }) => {
-  const [test, setTest] = useState<CartEntry[]>([]);
+  const [cart, setCart] = useState<CartState>({});
+
+  const setItem = (item: ItemEntry, quantity: number) => {
+    if (quantity === 0) {
+      let newCart = { ...cart };
+      delete newCart[item._id];
+      setCart(newCart);
+    } else {
+      setCart({
+        ...cart,
+        [item._id]: item,
+      });
+    }
+  };
 
   return (
-    <Provider value={{ state: test, dispatch: setTest }}>{children}</Provider>
+    <Provider value={{ state: cart, dispatch: setItem }}>{children}</Provider>
   );
 };
 
