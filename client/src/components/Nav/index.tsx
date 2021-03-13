@@ -20,7 +20,7 @@ const Nav: React.FC = () => {
         <NavItem to="/">Home</NavItem>
         <NavItem to="/deals">Deals</NavItem>
         <NavItem to="/cart">Cart</NavItem>
-        <div className='total-pill'>{total}</div>
+        <div className="total-pill">{total}</div>
       </ul>
     </nav>
   );
