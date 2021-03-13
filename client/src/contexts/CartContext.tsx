@@ -28,7 +28,7 @@ const CartProvider: FC = ({ children }) => {
     return total;
   };
 
-  const setItem = (item: ItemEntry, quantity: number) => {
+  const setItem = (item: ItemEntry | CartEntry, quantity: number) => {
     const cartEntry = {
       ...item,
       inCart: quantity,

@@ -1,18 +1,25 @@
-import React from 'react';
+import React from "react";
 
 type CartItemContainerProps = {
-  dispatch: CartDispatch
-  cartEntry: CartEntry
-}
+  dispatch: CartDispatch;
+  cartEntry: CartEntry;
+};
 
-const CartItemContainer: React.FC<CartItemContainerProps> = ({dispatch, cartEntry}) => {
-  
-  return(
-    <div className='cart-item-container'>
+const CartItemContainer: React.FC<CartItemContainerProps> = ({
+  dispatch,
+  cartEntry,
+}) => {
+  const handleChange = (evt: any) => {
+    const val = evt.currentTarget.value;
+    dispatch(cartEntry, parseInt(val));
+  };
+
+  return (
+    <div className="cart-item-container">
       <div>item.name</div>
-      <input type='number' value={cartEntry.inCart} />
+      <input type="number" value={cartEntry.inCart} onChange={handleChange} />
     </div>
   );
-}
+};
 
-export default CartItemContainer
+export default CartItemContainer;
