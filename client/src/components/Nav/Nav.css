@@ -21,7 +21,7 @@ nav a {
 }
 
 .nav-logo > a {
-  font-size: 48px;
+  font-size: 3rem;
   font-weight: bolder;
 }
 
@@ -57,4 +57,14 @@ nav a {
   background-color: red;
   color: white;
   border-radius: 50px;
+}
+
+@media (max-aspect-ratio: 5/8) {
+  .nav-logo > a {
+    font-size: 1.6rem;
+  }
+
+  .nav-item > a {
+    font-size: 1.2rem;
+  }
 }
