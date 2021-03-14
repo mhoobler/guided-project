@@ -1,13 +1,15 @@
 .button-container {
   text-align: center;
   height: 10%;
+  height: 2.5rem;
+  width: 10rem;
 }
 
 .button-container > div {
   position: relative;
-  width: 10rem;
+  width: 100%;
   margin: auto;
-  height: 2.5rem;
+  height: 100%;
   background-color: #f08700;
   border-radius: 4px;
 }
@@ -41,6 +43,7 @@
   color: white;
 }
 
+/* Media */
 @media (max-aspect-ratio: 3/4) {
   .button-container > div {
     width: 8rem;

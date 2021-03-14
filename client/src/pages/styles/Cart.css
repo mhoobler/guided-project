@@ -31,3 +31,23 @@
   margin-left: auto;
   margin-right: 1rem;
 }
+
+@media (max-aspect-ratio: 4/3) {
+  #Cart > .content {
+    padding: 2% 10%;
+  }
+
+  .checkout > .button-container > div {
+    height: 3rem;
+  }
+
+  .checkout > .button-container > div > * {
+    font-size: 1.5rem;
+    line-height: 3rem;
+  }
+
+  .checkout > .total * {
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+}

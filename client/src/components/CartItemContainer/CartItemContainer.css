@@ -33,7 +33,7 @@
 }
 
 .cart-item-name > h4 {
-  font-size: 32px;
+  font-size: 2rem;
   margin: 0;
 }
 
@@ -50,8 +50,38 @@
   line-height: 40px;
 }
 
+.remove-mobile-container {
+  display: none;
+}
+
 /* Price */
 .cart-item-container > .item-price {
   margin-left: auto;
   text-align: ceneter;
+}
+
+@media (max-aspect-ratio: 3/4) {
+  .cart-item-name > h4 {
+    font-size: 1.2rem;
+  }
+
+  .remove-container {
+    display: none;
+  }
+
+  .remove-mobile-container {
+    display: inherit;
+  }
+
+  .remove-mobile-container > .button-container {
+    display: flex;
+    height: 2rem;
+    width: 50px;
+  }
+
+  .remove-mobile-container > .button-container > div {
+    height: 2rem;
+    margin-top: 8px;
+    width: 50px;
+  }
 }

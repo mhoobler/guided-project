@@ -58,6 +58,17 @@ const CartItemContainer: React.FC<CartItemContainerProps> = ({
               </button>
             </ButtonContainer>
           </div>
+          <div className="remove-mobile-container">
+            <ButtonContainer variant="danger">
+              <button
+                onClick={() => {
+                  handleChange(0);
+                }}
+              >
+                X
+              </button>
+            </ButtonContainer>
+          </div>
         </div>
       </div>
       {/* Cart Price */}
