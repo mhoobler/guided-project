@@ -59,6 +59,7 @@
 .item-name {
   font-size: 2.2rem;
   font-weight: 500;
+  height: auto;
 }
 
 .item-description {
@@ -87,10 +88,10 @@
   }
 
   .item-name {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .item-description {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
