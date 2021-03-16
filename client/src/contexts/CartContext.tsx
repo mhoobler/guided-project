@@ -1,4 +1,5 @@
-import { FC, createContext, useState } from "react";
+import { FC, createContext, useState, useReducer } from "react";
+import CartReducer from "./CartReducer";
 
 //Testing purposes
 const dummyState: CartState = {
@@ -44,41 +45,20 @@ const { Provider } = CartContext;
 
 const CartProvider: FC = ({ children }) => {
   //Should probably useRef here
-  const [cart, setCart] = useState<CartState>(dummyState);
+  const [state, dispatch] = useReducer(CartReducer, dummyState);
 
   const clearCart = () => {
-    setCart({});
+    dispatch({ type: "CLEAR_CART" });
   };
 
   const setItem = (item: ItemEntry | CartEntry, quantity: number) => {
-    const cartEntry = {
-      ...item,
-      inCart: quantity,
-    };
-
-    if (quantity === 0 && cart[item._id]) {
-      let newCart = { ...cart };
-
-      delete newCart[item._id];
-      setCart(newCart);
-    } else {
-      if (cart[item._id]) {
-        setCart({
-          ...cart,
-          [item._id]: cartEntry,
-        });
-      } else {
-        setCart({
-          ...cart,
-          [item._id]: cartEntry,
-        });
-      }
-    }
+    let newItem = { ...item, inCart: quantity };
+    dispatch({ type: "CHANGE_ITEM", payload: newItem });
   };
 
   const howManyItemsInCart = () => {
     let total = 0;
-    Object.values(cart).forEach((e) => {
+    Object.values(state).forEach((e) => {
       total += e.inCart;
     });
     return total;
@@ -86,7 +66,12 @@ const CartProvider: FC = ({ children }) => {
 
   return (
     <Provider
-      value={{ state: cart, howManyItemsInCart, clearCart, dispatch: setItem }}
+      value={{
+        state,
+        howManyItemsInCart,
+        clearCart,
+        dispatch: setItem,
+      }}
     >
       {children}
     </Provider>
