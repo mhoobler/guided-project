@@ -33,25 +33,25 @@ const CartContext = createContext<{
   state: CartState;
   howManyItemsInCart: () => number;
   clearCart: () => void;
-  dispatch: CartDispatch;
+  setItemInCart: SetItemInCart;
 }>({
   state: {},
   howManyItemsInCart: () => 0,
   clearCart: () => {},
-  dispatch: () => {},
+  setItemInCart: () => {},
 });
 
 const { Provider } = CartContext;
 
 const CartProvider: FC = ({ children }) => {
   //Should probably useRef here
-  const [state, dispatch] = useReducer(CartReducer, dummyState);
+  const [state, dispatch] = useReducer(CartReducer, {});
 
   const clearCart = () => {
     dispatch({ type: "CLEAR_CART" });
   };
 
-  const setItem = (item: ItemEntry | CartEntry, quantity: number) => {
+  const setItemInCart: SetItemInCart = (item, quantity) => {
     let newItem = { ...item, inCart: quantity };
     dispatch({ type: "CHANGE_ITEM", payload: newItem });
   };
@@ -70,7 +70,7 @@ const CartProvider: FC = ({ children }) => {
         state,
         howManyItemsInCart,
         clearCart,
-        dispatch: setItem,
+        setItemInCart,
       }}
     >
       {children}

@@ -7,7 +7,7 @@ import ButtonContainer from "../ButtonContainer";
 import "./CartItemContainer.css";
 
 type CartItemContainerProps = {
-  dispatch: CartDispatch;
+  dispatch: SetItemInCart;
   cartEntry: CartEntry;
 };
 

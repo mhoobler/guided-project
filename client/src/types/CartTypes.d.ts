@@ -6,7 +6,7 @@ interface CartState {
   [_id: string]: CartEntry;
 }
 
-type CartDispatch = (item: ItemEntry | CartEntry, quantity: number) => void;
+type SetItemInCart = (item: ItemEntry | CartEntry, quantity: number) => void;
 
 type CartAction =
   | { type: "ADD_ITEM"; payload: CartEntry }

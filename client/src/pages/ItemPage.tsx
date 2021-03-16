@@ -23,7 +23,7 @@ const ItemPage: React.FC = () => {
 
   const [quantity, setQuantity] = useState(0);
   const [insufficient, setInsufficient] = useState(false);
-  const { state, dispatch } = useContext(CartContext);
+  const { state, setItemInCart } = useContext(CartContext);
   const inCart = state[params.id] ? state[params.id].inCart : 0;
   console.log(item);
 
@@ -41,7 +41,7 @@ const ItemPage: React.FC = () => {
       if (quantity > item.stockCount) {
         setInsufficient(true);
       } else {
-        dispatch(item, quantity);
+        setItemInCart(item, quantity);
       }
     };
 

@@ -11,7 +11,7 @@ import "./styles/Cart.css";
 
 const Cart: React.FC = () => {
   const history = useHistory();
-  const { state, dispatch, clearCart } = useContext(CartContext);
+  const { state, setItemInCart, clearCart } = useContext(CartContext);
   const keys = Object.keys(state);
   //State should useRef and contain totalPrice as property?
   const totalPrice = (() => {
@@ -48,7 +48,7 @@ const Cart: React.FC = () => {
             return (
               <CartItemContainer
                 key={e}
-                dispatch={dispatch}
+                dispatch={setItemInCart}
                 cartEntry={state[e]}
               />
             );
