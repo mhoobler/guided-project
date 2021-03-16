@@ -30,12 +30,12 @@ const dummyState: CartState = {
 
 const CartContext = createContext<{
   state: CartState;
-  total: number;
+  howManyItemsInCart: () => number;
   clearCart: () => void;
   dispatch: CartDispatch;
 }>({
   state: {},
-  total: 0,
+  howManyItemsInCart: () => 0,
   clearCart: () => {},
   dispatch: () => {},
 });
@@ -45,11 +45,9 @@ const { Provider } = CartContext;
 const CartProvider: FC = ({ children }) => {
   //Should probably useRef here
   const [cart, setCart] = useState<CartState>(dummyState);
-  const [total, setTotal] = useState(0);
 
   const clearCart = () => {
     setCart({});
-    setTotal(0);
   };
 
   const setItem = (item: ItemEntry | CartEntry, quantity: number) => {
@@ -59,37 +57,37 @@ const CartProvider: FC = ({ children }) => {
     };
 
     if (quantity === 0 && cart[item._id]) {
-      const change = -1 * cart[item._id].inCart;
       let newCart = { ...cart };
 
       delete newCart[item._id];
       setCart(newCart);
-      setTotal(total + change);
     } else {
       if (cart[item._id]) {
-        const current = cart[item._id];
-        const change =
-          current.inCart === quantity ? 0 : quantity - current.inCart;
-
         setCart({
           ...cart,
           [item._id]: cartEntry,
         });
-        setTotal(total + change);
       } else {
-        const change = quantity;
-
         setCart({
           ...cart,
           [item._id]: cartEntry,
         });
-        setTotal(total + change);
       }
     }
   };
 
+  const howManyItemsInCart = () => {
+    let total = 0;
+    Object.values(cart).forEach((e) => {
+      total += e.inCart;
+    });
+    return total;
+  };
+
   return (
-    <Provider value={{ state: cart, total, clearCart, dispatch: setItem }}>
+    <Provider
+      value={{ state: cart, howManyItemsInCart, clearCart, dispatch: setItem }}
+    >
       {children}
     </Provider>
   );

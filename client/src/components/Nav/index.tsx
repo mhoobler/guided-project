@@ -8,7 +8,7 @@ import { CartContext } from "../../contexts/CartContext";
 import "./Nav.css";
 
 const Nav: React.FC = () => {
-  const { total } = useContext(CartContext);
+  const { howManyItemsInCart } = useContext(CartContext);
 
   return (
     <nav>
@@ -20,7 +20,7 @@ const Nav: React.FC = () => {
         <NavItem to="/">Home</NavItem>
         <NavItem to="/deals">Deals</NavItem>
         <NavItem to="/cart">Cart</NavItem>
-        <div className="total-pill">{total}</div>
+        <div className="total-pill">{howManyItemsInCart()}</div>
       </ul>
     </nav>
   );
