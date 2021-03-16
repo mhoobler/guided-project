@@ -16,6 +16,13 @@
   margin: 5% 0%;
 }
 
+.cart-item-name > h4 {
+  font-size: 200%;
+  max-height: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .checkout > .button-container > div {
   height: 3.5rem;
 }
@@ -35,6 +42,10 @@
 @media (max-aspect-ratio: 4/3) {
   #Cart > .content {
     padding: 2% 10%;
+  }
+
+  .cart-item-name > h4 {
+    font-size: 1.4rem;
   }
 
   .checkout > .button-container > div {
