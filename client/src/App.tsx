@@ -11,6 +11,8 @@ import Checkout from "./pages/Checkout";
 
 import { CartProvider } from "./contexts/CartContext";
 
+import { CartProvider } from "./contexts/CartContext";
+
 import "./App.css";
 
 const App: React.FC = () => {
@@ -39,6 +41,7 @@ const App: React.FC = () => {
           <Route path="/checkout">
             <Checkout />
           </Route>
+
         </Switch>
       </CartProvider>
     </Router>

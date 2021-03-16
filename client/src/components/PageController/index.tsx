@@ -18,6 +18,7 @@ const PageController: React.FC<PageControllerProps> = ({
   //Return empty element if page is First and Last
   if (isFirst && isLast) {
     return <div></div>;
+
   }
 
   return (
