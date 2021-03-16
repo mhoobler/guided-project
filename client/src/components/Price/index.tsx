@@ -4,10 +4,11 @@ import "./Price.css";
 
 type PriceProps = {
   price: number;
+  leadingText?: string;
   isOnSale?: boolean;
 };
 
-const Price: React.FC<PriceProps> = ({ price, isOnSale }) => {
+const Price: React.FC<PriceProps> = ({ leadingText, price, isOnSale }) => {
   const formatPrice = price.toLocaleString(undefined, {
     currency: "USD",
     currencyDisplay: "narrowSymbol",
@@ -16,6 +17,7 @@ const Price: React.FC<PriceProps> = ({ price, isOnSale }) => {
 
   return (
     <div className="item-price">
+      {leadingText ? leadingText + " " : null}
       {formatPrice + " "}
       {isOnSale ? <span className="on-sale">On Sale</span> : null}
     </div>

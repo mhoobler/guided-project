@@ -1,12 +1,15 @@
 .button-container {
   text-align: center;
   height: 10%;
+  height: 2.5rem;
+  width: 10rem;
 }
 
 .button-container > div {
-  width: 10rem;
+  position: relative;
+  width: 100%;
   margin: auto;
-  height: 2.5rem;
+  height: 100%;
   background-color: #f08700;
   border-radius: 4px;
 }
@@ -22,9 +25,33 @@
 }
 
 .button-container > div > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1.2rem;
   color: white;
   vertical-align: middle;
   line-height: 40px;
+}
+
+/* Variants */
+.button-container.danger > div {
+  background-color: #c41f35;
+  color: white;
+}
+
+/* Media */
+@media (max-aspect-ratio: 3/4) {
+  .button-container > div {
+    width: 8rem;
+    height: 2rem;
+  }
+
+  .button-container > div > * {
+    font-size: 1rem;
+    line-height: 32px;
+  }
 }

@@ -8,7 +8,8 @@ import { CartContext } from "../../contexts/CartContext";
 import "./Nav.css";
 
 const Nav: React.FC = () => {
-  const { state } = useContext(CartContext);
+  const { howManyItemsInCart } = useContext(CartContext);
+
   return (
     <nav>
       <div className="nav-logo">
@@ -18,7 +19,8 @@ const Nav: React.FC = () => {
       <ul className="nav-list">
         <NavItem to="/">Home</NavItem>
         <NavItem to="/deals">Deals</NavItem>
-        <NavItem to="/cart">Cart {Object.keys(state).length}</NavItem>
+        <NavItem to="/cart">Cart</NavItem>
+        <div className="total-pill">{howManyItemsInCart()}</div>
       </ul>
     </nav>
   );

@@ -1,5 +1,5 @@
 .quantity-select-container {
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
 .quantity-select-container input {
@@ -9,5 +9,18 @@
   height: 2.5rem;
   width: 4rem;
   text-align: center;
-  font-size: 20px;
+  font-size: 1.2rem;
+}
+
+@media (max-aspect-ratio: 4/3) {
+  .quantity-select-container {
+    font-size: 1rem;
+  }
+
+  .quantity-select-container input {
+    height: 2rem;
+    width: 3.2rem;
+    font-size: 1rem;
+    padding: 0;
+  }
 }
